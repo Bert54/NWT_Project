@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="30f0c058-dc53-4260-8838-66dc90faa2a6" name="Default Changelist" comment="" />
+    <list default="true" id="30f0c058-dc53-4260-8838-66dc90faa2a6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../videogames-back/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../videogames-back/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -25,7 +34,14 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
   </component>
   <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Tests (front)" type="JavaScriptTestRunnerKarma">
@@ -68,6 +84,7 @@
       <workItem from="1605721319740" duration="936000" />
       <workItem from="1605722572779" duration="35000" />
       <workItem from="1605724453079" duration="30000" />
+      <workItem from="1605729497639" duration="1447000" />
     </task>
     <servers />
   </component>
@@ -79,21 +96,21 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1605722606163" />
-    <state width="1830" height="278" key="GridCell.Tab.0.bottom" timestamp="1605724482747">
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom" timestamp="1605730650442">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1605724482747" />
-    <state width="1830" height="278" key="GridCell.Tab.0.center" timestamp="1605724482746">
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1605730650442" />
+    <state width="1830" height="278" key="GridCell.Tab.0.center" timestamp="1605730650441">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1605724482746" />
-    <state width="1830" height="278" key="GridCell.Tab.0.left" timestamp="1605724482746">
+    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1605730650441" />
+    <state width="1830" height="278" key="GridCell.Tab.0.left" timestamp="1605730650441">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1605724482746" />
-    <state width="1830" height="278" key="GridCell.Tab.0.right" timestamp="1605724482747">
+    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1605730650441" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right" timestamp="1605730650442">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1605724482747" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1605730650442" />
   </component>
 </project>
