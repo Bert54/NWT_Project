@@ -1,0 +1,9 @@
+/videogames-back/dist
+/videogames-back/node_modules
+/videogames-front/dist
+/videogames-front/node_modules
+
+/videogames-back/.idea
+/videogames-front/.idea
+
+
