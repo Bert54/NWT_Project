@@ -6,10 +6,10 @@ server:
     - "http://127.0.0.1:4200"
     - "http://localhost:4200"
 swagger:
-  title: New Web's Technologies course with NestJS
-  description: The People API description
-  version: 1.0
-  tag: people
+  title: NWT back project with NestJS
+  description: The video-games API description
+  version: 0.0.1
+  tag: vg
   path: documentation
 mongodb:
   uri: mongodb://0.0.0.0:27017/nwt
