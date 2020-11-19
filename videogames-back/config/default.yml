@@ -12,8 +12,9 @@ swagger:
   tag: vg
   path: documentation
 mongodb:
-  uri: mongodb://0.0.0.0:27017/nwt
+  uri: mongodb://0.0.0.0:27017/vg
   options:
+    useCreateIndex: true
     useNewUrlParser: true
     useUnifiedTopology: true
     useFindAndModify: false
