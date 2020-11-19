@@ -1,0 +1,13 @@
+<section>
+  <mat-card class="game-card">
+    <mat-card-header>
+      <mat-card-title>{{ game.name }}</mat-card-title>
+      <mat-card-subtitle>{{ game.genre }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ game.platform }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{ game.cover }}" style="max-height:300px; width: auto;" />
+    <mat-card-content>
+      <p>{{ game.description }}</p>
+    </mat-card-content>
+  </mat-card>
+</section>

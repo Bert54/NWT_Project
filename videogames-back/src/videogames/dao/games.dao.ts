@@ -17,4 +17,11 @@ export class GamesDao {
       );
   }
 
+  findById(id: string): Observable<Game | void> {
+    return from(this._gameModel.findById(id))
+      .pipe(
+        map((doc: MongooseDocument) => !!doc ? doc.toJSON() : undefined),
+      );
+  }
+
 }

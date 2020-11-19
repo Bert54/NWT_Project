@@ -10,6 +10,7 @@ export const environment = {
     port: '3000',
     endpoints: {
       allGames: '/games',
+      singleGame: '/games/:id',
     }
   }
 };

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Game} from '../shared/interfaces/Game';
 import {VideoGamesService} from '../shared/services/VideoGamesService';
+import {Router} from '@angular/router';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -14,7 +15,7 @@ export class VideoGameListComponent implements OnInit {
   private _games: Game[];
 
   // tslint:disable-next-line:variable-name
-  constructor(private _vgService: VideoGamesService) {
+  constructor(private _vgService: VideoGamesService, private _router: Router) {
     this._games = [];
   }
 
@@ -24,6 +25,11 @@ export class VideoGameListComponent implements OnInit {
 
   ngOnInit(): void {
     this._vgService.fetch().subscribe((games: Game[]) => this._games = games);
+  }
+
+
+  goToGame(id: string): void {
+    this._router.navigate([ 'games', id ]);
   }
 
 }

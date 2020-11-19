@@ -1,10 +1,13 @@
 <section>
   <mat-list>
-    <mat-list-item *ngFor="let game of games">
-      <span style="width:50%;">
+    <mat-list-item (click)="goToGame(game.id)" *ngFor="let game of games">
+      <span id="list-elem-name">
         <h3>{{ game.name }}</h3>
       </span>
-      <span style="width:50%;">
+      <span id="list-elem-prop">
+        <p>Genre: {{ game.genre }}</p>
+      </span>
+      <span id="list-elem-prop">
         <p>Platform: {{ game.platform }}</p>
       </span>
     </mat-list-item>

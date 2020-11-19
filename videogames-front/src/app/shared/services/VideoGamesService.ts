@@ -37,5 +37,9 @@ export class VideoGamesService {
       );
   }
 
+  fetchOne(id: string): Observable<Game> {
+    return this._http.get<Game>(this._backendURL.singleGame.replace(':id', id));
+  }
+
 
 }
