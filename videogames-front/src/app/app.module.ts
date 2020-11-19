@@ -9,7 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { VideoGameDetailsComponent } from './video-game-details/video-game-details.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,11 @@ import { VideoGameDetailsComponent } from './video-game-details/video-game-detai
     MatCardModule,
     MatListModule,
     HttpClientModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatDividerModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

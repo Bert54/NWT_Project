@@ -1,8 +1,26 @@
-section {
+div.game-list-container {
   display: flex;
   flex-direction: row;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+div.game-menu {
+  width: 20%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+div.game-list {
+  display: flex;
+  position: relative;
+  float: top;
+  flex-direction: column;
+  width: 60%;
+  margin-top: 20px;
 }
 
 mat-list-item {
@@ -12,7 +30,6 @@ mat-list-item {
   background-color: #e0e8ff;
   font-size: 14px;
   position: relative;
-  margin-top: 5px;
   margin-bottom: 5px;
   transition: box-shadow 0.2s;
   cursor: pointer;

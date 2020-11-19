@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from '../shared/interfaces/Game';
 import { VideoGamesService } from '../shared/services/VideoGamesService';
 
@@ -15,7 +15,7 @@ export class VideoGameDetailsComponent implements OnInit {
   private _game: Game;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _route: ActivatedRoute, private _vgService: VideoGamesService) {
+  constructor(private _route: ActivatedRoute, private _vgService: VideoGamesService, private _router: Router) {
     this._game = {} as Game;
   }
 
@@ -28,6 +28,10 @@ export class VideoGameDetailsComponent implements OnInit {
 
   public get game(): Game {
     return this._game;
+  }
+
+  public returnToGameList(): void {
+    this._router.navigate(['games']);
   }
 
 }

@@ -1,13 +1,29 @@
-<section>
-  <mat-card class="game-card">
-    <mat-card-header>
-      <mat-card-title>{{ game.name }}</mat-card-title>
-      <mat-card-subtitle>{{ game.genre }}</mat-card-subtitle>
-      <mat-card-subtitle>{{ game.platform }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="{{ game.cover }}" style="max-height:300px; width: auto;" />
-    <mat-card-content>
-      <p>{{ game.description }}</p>
-    </mat-card-content>
-  </mat-card>
-</section>
+<div id="card-container">
+  <section class="came-card-container">
+    <mat-card class="game-card">
+      <div class="card-header">
+        <mat-card-header>
+          <mat-card-title class="card-container-left"><p class="mat-display-3">{{ game.name }}</p></mat-card-title>
+          <mat-card-subtitle class="card-container-left"><p class="mat-display-1">Genre: {{ game.genre }}</p></mat-card-subtitle>
+          <mat-card-subtitle class="card-container-left"><p class="mat-display-1">Platform: {{ game.platform }}</p></mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{ game.cover }}" class="card-container-right" style="max-height:300px; width: auto;" />
+      </div>
+      <mat-divider [inset]="true"></mat-divider>
+      <br />
+      <mat-card-content>
+        <p>{{ game.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+  <section class="came-card-controls">
+    <button class="card-return" mat-button (click)="returnToGameList()">
+      <mat-icon svgIcon="icon-back"></mat-icon>
+      Return to List
+    </button>
+    <button class="card-delete" mat-button>
+      <mat-icon svgIcon="icon-delete"></mat-icon>
+      Delete
+    </button>
+  </section>
+</div>

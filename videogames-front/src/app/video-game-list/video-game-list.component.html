@@ -1,15 +1,28 @@
-<section>
-  <mat-list>
-    <mat-list-item (click)="goToGame(game.id)" *ngFor="let game of games">
-      <span id="list-elem-name">
-        <h3>{{ game.name }}</h3>
-      </span>
-      <span id="list-elem-prop">
-        <p>Genre: {{ game.genre }}</p>
-      </span>
-      <span id="list-elem-prop">
-        <p>Platform: {{ game.platform }}</p>
-      </span>
-    </mat-list-item>
-  </mat-list>
-</section>
+<div class="game-list-container">
+  <div class="game-menu">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Commands
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p><button mat-button >Display search options</button></p>
+      <p><button mat-button >Add new game</button></p>
+    </mat-expansion-panel>
+  </div>
+  <div class="game-list">
+    <mat-list>
+      <mat-list-item (click)="goToGame(game.id)" *ngFor="let game of games">
+        <span id="list-elem-name">
+          <h3>{{ game.name }}</h3>
+        </span>
+        <span id="list-elem-prop">
+          <p>Genre: {{ game.genre }}</p>
+        </span>
+        <span id="list-elem-prop">
+          <p>Platform: {{ game.platform }}</p>
+        </span>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
