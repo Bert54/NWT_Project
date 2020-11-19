@@ -1,0 +1,12 @@
+<section>
+  <mat-list>
+    <mat-list-item *ngFor="let game of games">
+      <span style="width:50%;">
+        <h3>{{ game.name }}</h3>
+      </span>
+      <span style="width:50%;">
+        <p>Platform: {{ game.platform }}</p>
+      </span>
+    </mat-list-item>
+  </mat-list>
+</section>
