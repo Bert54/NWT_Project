@@ -7,7 +7,7 @@ import { VideoGamesService } from '../shared/services/VideoGamesService';
   // tslint:disable-next-line:component-selector
   selector: 'video-game-details',
   templateUrl: './video-game-details.component.html',
-  styleUrls: ['./video-game-details.component.css']
+  styleUrls: ['./video-game-details.component.scss']
 })
 export class VideoGameDetailsComponent implements OnInit {
 

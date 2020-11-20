@@ -5,7 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 
@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._matIconRegistry.addSvgIcon('icon-back', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/arrow_back-24px.svg'));
-    this._matIconRegistry.addSvgIcon('icon-delete', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/delete-24px.svg'));
+    this._matIconRegistry.addSvgIcon('icon-back', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/arrow_back-24px.svg'));
+    this._matIconRegistry.addSvgIcon('icon-delete', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/delete-24px.svg'));
   }
 
 }
