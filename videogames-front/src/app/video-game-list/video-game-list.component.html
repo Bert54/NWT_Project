@@ -1,52 +1,109 @@
 <div class="game-list-container">
   <div class="game-menu">
-    <mat-expansion-panel>
+    <mat-expansion-panel style="background-color:#e6f2ff" >
       <mat-expansion-panel-header>
         <mat-panel-title>
           Commands
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p><button mat-button >Display search options</button></p>
-      <p><button mat-button >Add new game</button></p>
+      <mat-divider></mat-divider>
+      <p style="padding-top:10px" >
+        <button mat-button (click)="toggleSearchMenu()" class="menu-item">
+          Toggle search options
+          <mat-icon svgIcon="icon-search"></mat-icon>
+        </button>
+      </p>
+      <p>
+        <button mat-button class="menu-item">
+          Add new game
+          <mat-icon svgIcon="icon-add"></mat-icon>
+        </button>
+      </p>
     </mat-expansion-panel>
   </div>
-  <div class="game-list">
-    <mat-list matSort (matSortChange)="sortGameList($event)">
-      <mat-list-item class="game-list-header">
-        <span id="list-elem-name">
-          <h3 mat-sort-header="name">Name</h3>
-        </span>
-        <span id="list-elem-prop">
-          <p mat-sort-header="genre">Genre</p>
-        </span>
-        <span id="list-elem-prop">
-          <p mat-sort-header="platform">Platform</p>
-        </span>
-      </mat-list-item>
-      <mat-list-item (click)="goToGame(game.id)" *ngFor="let game of displayedGames; let i = index"
-                     (mouseenter)="displayDeleteButtons[i]=true" (mouseleave)="displayDeleteButtons[i]=false">
-        <span id="list-elem-name">
-          <h3>{{ game.name }}</h3>
-        </span>
-        <span id="list-elem-prop">
-          <p>{{ game.genre }}</p>
-        </span>
-        <span id="list-elem-prop">
-          <p>{{ game.platform }}</p>
-        </span>
-        <div *ngIf="displayDeleteButtons[i]">
-          <button mat-mini-fab color="warn" class="game-item-delete" *ngIf="displayDeleteButtons[i]">
-            <mat-icon svgIcon="icon-delete"></mat-icon>
-          </button>
-        </div>
-      </mat-list-item>
-    </mat-list>
-    <mat-paginator [length]="games.length"
-                   [pageSize]="pageSize"
-                   [pageIndex]="currentPage"
-                   [pageSizeOptions]="[1, 5, 10, 25, 100]"
-                   (page)="_pageEvent = switchDisplayedGamed($event)"
-                    style="background-color: #e6f2ff;">
-    </mat-paginator>
+  <div class="game-list-with-params">
+    <div class="game-list-params" *ngIf="isSearchMenuShown">
+      <p style="font-size:25px; color:dodgerblue; margin-top: 15px; margin-left:15px" >
+        <mat-icon svgIcon="icon-search"></mat-icon>
+        Search Options
+      </p>
+      <mat-divider></mat-divider>
+      <p>
+        <mat-grid-list cols="3" rowHeight="3:1" style="width:100%">
+          <mat-grid-tile>
+            <div class="input-wrap">
+              <mat-form-field appearance="outline" >
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" [(ngModel)]="_searchNameValue" />
+                <button mat-button *ngIf="searchNameValue" matSuffix mat-icon-button aria-label="Clear" (click)="setSearchNameValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="input-wrap">
+              <mat-form-field appearance="outline">
+                <mat-label>Genre</mat-label>
+                <input matInput placeholder="Genre" [(ngModel)]="_searchGenreValue" />
+                <button mat-button *ngIf="searchGenreValue" matSuffix mat-icon-button aria-label="Clear" (click)="setSearchGenreValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="input-wrap">
+              <mat-form-field appearance="outline">
+                <mat-label>Platform</mat-label>
+                <input matInput placeholder="Platform" [(ngModel)]="_searchPlatformValue" />
+                <button mat-button *ngIf="searchPlatformValue" matSuffix mat-icon-button aria-label="Clear" (click)="setSearchPlatformValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </p>
+    </div>
+    <div class="game-list">
+      <mat-list matSort (matSortChange)="sortGameList($event)">
+        <mat-list-item class="game-list-header">
+          <span id="list-elem-name">
+            <h3 mat-sort-header="name">Name</h3>
+          </span>
+          <span id="list-elem-prop">
+            <p mat-sort-header="genre">Genre</p>
+          </span>
+          <span id="list-elem-prop">
+            <p mat-sort-header="platform">Platform</p>
+          </span>
+        </mat-list-item>
+        <mat-list-item (click)="goToGame(game.id)" *ngFor="let game of displayedGames; let i = index"
+                       (mouseenter)="displayDeleteButtons[i]=true" (mouseleave)="displayDeleteButtons[i]=false">
+          <span id="list-elem-name">
+            <h3>{{ game.name }}</h3>
+          </span>
+          <span id="list-elem-prop">
+            <p>{{ game.genre }}</p>
+          </span>
+          <span id="list-elem-prop">
+            <p>{{ game.platform }}</p>
+          </span>
+          <div *ngIf="displayDeleteButtons[i]">
+            <button mat-mini-fab color="warn" class="game-item-delete">
+              <mat-icon svgIcon="icon-delete"></mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <mat-paginator [length]="games.length"
+                     [pageSize]="pageSize"
+                     [pageIndex]="currentPage"
+                     [pageSizeOptions]="[1, 5, 10, 25, 100]"
+                     (page)="_pageEvent = switchDisplayedGamed($event)"
+                     style="background-color: #eff5ff;">
+      </mat-paginator>
+    </div>
   </div>
 </div>

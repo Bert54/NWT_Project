@@ -6,12 +6,31 @@ div.game-list-container {
 }
 
 div.game-menu {
-  width: 20%;
+  width: 15%;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  margin-right: 5%;
+}
+
+div.game-list-with-params {
+  width: 55%;
+}
+
+div.game-list-params {
+  background-color: #eff5ff;
+  border:  1px groove rgba(0,0,0,0.1);
+  border-radius: 5px;
+}
+
+div.input-wrap {
+  background-color: white;
+  padding-left: 4px;
+  padding-right: 4px;
+  border:  1px groove rgba(0,0,0,0.1);
+  border-radius: 5px;
+  height: 59px;
 }
 
 div.game-list {
@@ -19,14 +38,13 @@ div.game-list {
   position: relative;
   float: top;
   flex-direction: column;
-  width: 60%;
-  margin-top: 20px;
-  background-color: #e6f2ff;
+  background-color: #eff5ff;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 25px;
   border:  1px groove rgba(0,0,0,0.1);
   border-radius: 5px;
+  box-shadow: 0px 6px 5px -3px rgba(0,0,0,0.28);
 }
 
 .game-list-header {
@@ -41,23 +59,20 @@ div.game-list {
 
 mat-list-item {
   border: 2px solid rgba(0,0,0,0.1);
-  border-radius: 10px;
+  border-radius: 5px;
   color: rgba(0, 0, 0, 0.87);
   background-color: #e0e8ff;
   font-size: 14px;
   position: relative;
-  margin-bottom: 5px;
-  transition: box-shadow 0.2s;
+  margin-bottom: 10px;
+  transition: box-shadow 0.3s;
   cursor: pointer;
+  display: block;
 }
 
 mat-list-item:hover {
   box-shadow: 0px 0px 22px 8px rgba(132,162,250,1);
   background-color: #84a2fa;
-}
-
-button.game-item-delete {
-  margin-left: 300%;
 }
 
 button.game-item-delete:hover {
@@ -72,4 +87,11 @@ button.game-item-delete:hover {
 #list-elem-prop {
   width: 200px;
   padding-top: 18px;
+}
+
+.menu-item {
+  width: 100%;
+  background-color: #e0e8ff;
+  border:1px groove rgba(0,0,0,0.1);
+
 }

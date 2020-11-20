@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { VideoGameListComponent } from './video-game-list/video-game-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,
+    MatInputModule,
+    MatGridListModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

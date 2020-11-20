@@ -18,6 +18,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this._matIconRegistry.addSvgIcon('icon-back', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/arrow_back-24px.svg'));
     this._matIconRegistry.addSvgIcon('icon-delete', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/delete-24px.svg'));
+    this._matIconRegistry.addSvgIcon('icon-add', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/add-24px.svg'));
+    this._matIconRegistry.addSvgIcon('icon-search', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/search-24px.svg'));
+    this._matIconRegistry.addSvgIcon('icon-game',
+      this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/videogame_asset-24px.svg'));
   }
 
 }

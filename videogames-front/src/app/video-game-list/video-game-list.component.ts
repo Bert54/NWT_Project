@@ -14,19 +14,25 @@ import {Sort} from '@angular/material/sort';
 export class VideoGameListComponent implements OnInit {
 
   // tslint:disable-next-line:variable-name
-  _pageSize;
+  _pageSize: any;
   // tslint:disable-next-line:variable-name
-  _currentPage;
+  _currentPage: any;
   // tslint:disable-next-line:variable-name
   _pageEvent: PageEvent;
-
   // tslint:disable-next-line:variable-name
   private _displayDeleteButtons: boolean[];
-
   // tslint:disable-next-line:variable-name
   private _games: Game[];
   // tslint:disable-next-line:variable-name
   private _displayedGames: Game[];
+  // tslint:disable-next-line:variable-name
+  private _isSearchMenuShown;
+  // tslint:disable-next-line:variable-name
+  _searchNameValue: any;
+  // tslint:disable-next-line:variable-name
+  _searchGenreValue: any;
+  // tslint:disable-next-line:variable-name
+  _searchPlatformValue: any;
 
   // tslint:disable-next-line:variable-name
   constructor(private _vgService: VideoGamesService, private _router: Router) {
@@ -34,6 +40,10 @@ export class VideoGameListComponent implements OnInit {
     this._displayedGames = [];
     this._pageSize = 10;
     this._currentPage = 0;
+    this._isSearchMenuShown = false;
+    this._searchNameValue = '';
+    this._searchGenreValue = '';
+    this._searchPlatformValue = '';
   }
 
   get games(): Game[] {
@@ -54,6 +64,34 @@ export class VideoGameListComponent implements OnInit {
 
   get displayDeleteButtons(): boolean[] {
     return this._displayDeleteButtons;
+  }
+
+  get isSearchMenuShown(): boolean {
+    return this._isSearchMenuShown;
+  }
+
+  get searchNameValue(): boolean {
+    return this._searchNameValue;
+  }
+
+  get searchGenreValue(): boolean {
+    return this._searchGenreValue;
+  }
+
+  get searchPlatformValue(): boolean {
+    return this._searchPlatformValue;
+  }
+
+  setSearchNameValue(newValue: string): void {
+    this._searchNameValue = newValue;
+  }
+
+  setSearchGenreValue(newValue: string): void {
+    this._searchGenreValue = newValue;
+  }
+
+  setSearchPlatformValue(newValue: string): void {
+    this._searchPlatformValue = newValue;
   }
 
   private updateDisplayedPages(): void {
@@ -92,12 +130,17 @@ export class VideoGameListComponent implements OnInit {
     this.updateDisplayedPages();
   }
 
+  toggleSearchMenu(): void {
+    this._isSearchMenuShown = !this._isSearchMenuShown;
+  }
+
   sortGameList(sort: Sort): any {
     let sortedData: Game[];
-    const data = this._displayedGames.slice();
+    const data = this._games.slice();
     if (!sort.active || sort.direction === '') {
       sortedData = data;
-      this._displayedGames = sortedData;
+      this._games = sortedData;
+      this.updateDisplayedPages();
       return;
     }
 
@@ -110,7 +153,8 @@ export class VideoGameListComponent implements OnInit {
         default: return 0;
       }
     });
-    this._displayedGames = sortedData;
+    this._games = sortedData;
+    this.updateDisplayedPages();
   }
 
   compare(a: number | string, b: number | string, isAsc: boolean): any {

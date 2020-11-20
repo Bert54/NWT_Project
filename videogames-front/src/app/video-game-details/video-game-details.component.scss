@@ -28,6 +28,7 @@ button.card-return {
   border-radius: 10px;
   background-color: #e0e8ff;
   margin-right: 20px;
+  transition: box-shadow 0.3s;
 }
 
 button.card-return:hover {
@@ -39,6 +40,7 @@ button.card-delete {
   border: 2px groove #ff3333;
   border-radius: 10px;
   background-color: #ff7d7d;
+  transition: box-shadow 0.3s;
 }
 
 button.card-delete:hover {
