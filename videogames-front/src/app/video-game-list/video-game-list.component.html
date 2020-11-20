@@ -11,24 +11,42 @@
     </mat-expansion-panel>
   </div>
   <div class="game-list">
-    <mat-list>
-      <mat-list-item (click)="goToGame(game.id)" *ngFor="let game of displayedGames">
+    <mat-list matSort (matSortChange)="sortGameList($event)">
+      <mat-list-item class="game-list-header">
+        <span id="list-elem-name">
+          <h3 mat-sort-header="name">Name</h3>
+        </span>
+        <span id="list-elem-prop">
+          <p mat-sort-header="genre">Genre</p>
+        </span>
+        <span id="list-elem-prop">
+          <p mat-sort-header="platform">Platform</p>
+        </span>
+      </mat-list-item>
+      <mat-list-item (click)="goToGame(game.id)" *ngFor="let game of displayedGames; let i = index"
+                     (mouseenter)="displayDeleteButtons[i]=true" (mouseleave)="displayDeleteButtons[i]=false">
         <span id="list-elem-name">
           <h3>{{ game.name }}</h3>
         </span>
         <span id="list-elem-prop">
-          <p>Genre: {{ game.genre }}</p>
+          <p>{{ game.genre }}</p>
         </span>
         <span id="list-elem-prop">
-          <p>Platform: {{ game.platform }}</p>
+          <p>{{ game.platform }}</p>
         </span>
+        <div *ngIf="displayDeleteButtons[i]">
+          <button mat-mini-fab color="warn" class="game-item-delete" *ngIf="displayDeleteButtons[i]">
+            <mat-icon svgIcon="icon-delete"></mat-icon>
+          </button>
+        </div>
       </mat-list-item>
     </mat-list>
     <mat-paginator [length]="games.length"
                    [pageSize]="pageSize"
                    [pageIndex]="currentPage"
                    [pageSizeOptions]="[1, 5, 10, 25, 100]"
-                   (page)="_pageEvent = switchDisplayedGamed($event)">
+                   (page)="_pageEvent = switchDisplayedGamed($event)"
+                    style="background-color: #e6f2ff;">
     </mat-paginator>
   </div>
 </div>

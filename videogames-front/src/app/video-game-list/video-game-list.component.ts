@@ -3,6 +3,7 @@ import {Game} from '../shared/interfaces/Game';
 import {VideoGamesService} from '../shared/services/VideoGamesService';
 import {Router} from '@angular/router';
 import {PageEvent} from '@angular/material/paginator';
+import {Sort} from '@angular/material/sort';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,6 +19,9 @@ export class VideoGameListComponent implements OnInit {
   _currentPage;
   // tslint:disable-next-line:variable-name
   _pageEvent: PageEvent;
+
+  // tslint:disable-next-line:variable-name
+  private _displayDeleteButtons: boolean[];
 
   // tslint:disable-next-line:variable-name
   private _games: Game[];
@@ -48,9 +52,13 @@ export class VideoGameListComponent implements OnInit {
     return this._currentPage;
   }
 
+  get displayDeleteButtons(): boolean[] {
+    return this._displayDeleteButtons;
+  }
+
   private updateDisplayedPages(): void {
     this._displayedGames = [];
-    if ((this._currentPage + 1) * this.pageSize >= this._games.length) {;
+    if ((this._currentPage + 1) * this.pageSize >= this._games.length) {
       for (let i = this._currentPage * this._pageSize ; i < this._games.length ; i++) {
         this._displayedGames.push(this._games[i]);
       }
@@ -59,6 +67,10 @@ export class VideoGameListComponent implements OnInit {
       for (let i = this._currentPage * this._pageSize ; i < (this._currentPage + 1) * this._pageSize ; i++) {
         this._displayedGames.push(this._games[i]);
       }
+    }
+    this._displayDeleteButtons = [];
+    for (let i = 0 ; i < this._pageSize ; i++) {
+      this._displayDeleteButtons.push(false);
     }
   }
 
@@ -78,6 +90,30 @@ export class VideoGameListComponent implements OnInit {
     this._currentPage = event.pageIndex;
     this._pageSize = event.pageSize;
     this.updateDisplayedPages();
-    return 1;
+  }
+
+  sortGameList(sort: Sort): any {
+    let sortedData: Game[];
+    const data = this._displayedGames.slice();
+    if (!sort.active || sort.direction === '') {
+      sortedData = data;
+      this._displayedGames = sortedData;
+      return;
+    }
+
+    sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name': return this.compare(a.name, b.name, isAsc);
+        case 'genre': return this.compare(a.genre, b.genre, isAsc);
+        case 'platform': return this.compare(a.platform, b.platform, isAsc);
+        default: return 0;
+      }
+    });
+    this._displayedGames = sortedData;
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean): any {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }

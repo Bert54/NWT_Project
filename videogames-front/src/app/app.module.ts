@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatDividerModule,
     MatIconModule,
     MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]
