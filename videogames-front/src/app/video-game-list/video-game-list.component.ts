@@ -1,9 +1,13 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Game} from '../shared/interfaces/Game';
 import {VideoGamesService} from '../shared/services/VideoGamesService';
 import {Router} from '@angular/router';
 import {PageEvent} from '@angular/material/paginator';
 import {Sort} from '@angular/material/sort';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {GameDialogComponent} from '../shared/game-dialog/game-dialog.component';
+import {filter, map, mergeMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -37,7 +41,12 @@ export class VideoGameListComponent implements OnInit {
   _searchPlatformValue: any;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _vgService: VideoGamesService, private _router: Router) {
+  private _gamesDialog: MatDialogRef<GameDialogComponent>;
+  // tslint:disable-next-line:variable-name
+  private _dialogStatus: string;
+
+  // tslint:disable-next-line:variable-name
+  constructor(private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog) {
     this._games = [];
     this._filteredGames = [];
     this._displayedGames = [];
@@ -47,6 +56,7 @@ export class VideoGameListComponent implements OnInit {
     this._searchNameValue = '';
     this._searchGenreValue = '';
     this._searchPlatformValue = '';
+    this._dialogStatus = 'inactive';
   }
 
   ngOnInit(): void {
@@ -145,6 +155,7 @@ export class VideoGameListComponent implements OnInit {
   }
 
   filterGames(): void {
+    this._currentPage = 0;
     this._filteredGames = [];
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0 ; i < this._games.length ; i++) {
@@ -198,4 +209,42 @@ export class VideoGameListComponent implements OnInit {
   compare(a: number | string, b: number | string, isAsc: boolean): any {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
+
+  showGameDialog(): void {
+    // set dialog status
+    this._dialogStatus = 'active';
+
+    // open modal
+    this._gamesDialog = this._dialog.open(GameDialogComponent, {
+      width: '500px',
+      height: '650px',
+      disableClose: true,
+    });
+
+    // subscribe to afterClosed observable to set dialog status and do process
+    this._gamesDialog.afterClosed()
+      .pipe(
+        filter(_ => !!_),
+        map((_: Game) => {
+          delete _.id;
+          return _;
+        }),
+        mergeMap(_ => this._add(_))
+      )
+      .subscribe(
+        (games: Game[]) => {
+          this._games = games;
+          this._dialogStatus = 'inactive';
+          this.filterGames();
+        });
+  }
+
+  private _add(game: Game): Observable<Game[]> {
+    return this._vgService
+      .create(game)
+      .pipe(
+        mergeMap(_ => this._vgService.fetch())
+      );
+  }
+
 }

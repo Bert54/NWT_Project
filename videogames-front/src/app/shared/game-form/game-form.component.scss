@@ -1,0 +1,19 @@
+img {
+  border: 2px groove rgba(0,0,0,0.3);
+  margin-left: 20px;
+  max-width:200px;
+  height:auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.image-container {
+  width:200px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}

@@ -1,0 +1,118 @@
+<h2 mat-dialog-title *ngIf="isUpdateMode">Update {{ form.get('name').value }}</h2>
+<h2 mat-dialog-title *ngIf="!isUpdateMode">Add new game to collection</h2>
+
+<mat-dialog-content>
+  <form novalidate [formGroup]="form">
+
+    <p *ngIf="isUpdateMode">
+      <span style="width:100%">ID (disabled)</span><br/>
+      <span style="width:100%">{{model.id}}</span>
+    </p>
+
+    <table class="full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field appearance="outline" class="full-width" [class.mgb15]="form.get('name').dirty && form.get('name').invalid">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" formControlName="name" minlength="1" required name="name" />
+            <mat-error *ngIf="form.get('name').dirty && form.get('name').hasError('required')">
+              Game name is required
+            </mat-error>
+            <mat-error *ngIf="form.get('name').dirty && form.get('name').hasError('minlength')">
+              Game name is too short
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Cover</mat-label>
+            <input matInput placeholder="Cover" formControlName="cover" name="cover" (input)="updateCover()" />
+            <mat-error *ngIf="form.get('cover').dirty && form.get('cover').hasError('pattern')">
+              Picture URL is invalid
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td class="align-right">
+          <div class="image-container">
+            <img [src]="displayedCover" (error)="setDefaultCover()"/>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <span style="display:flex; flex-direction:row; justify-content:space-between; margin-top: 10px;">
+    <p>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Platform</mat-label>
+        <mat-select formControlName="platform" required >
+          <mat-option value="PC">PC</mat-option>
+          <mat-option value="Xbox Series X">Xbox Series X</mat-option>
+          <mat-option value="Xbox Series S">Xbox Series S</mat-option>
+          <mat-option value="Xbox One">Xbox One</mat-option>
+          <mat-option value="Xbox 360">Xbox 360</mat-option>
+          <mat-option value="Xbox">Xbox</mat-option>
+          <mat-option value="PS5">PS5</mat-option>
+          <mat-option value="PS4">PS4</mat-option>
+          <mat-option value="PS3">PS3</mat-option>
+          <mat-option value="PS2">PS2</mat-option>
+          <mat-option value="PS1">PS1</mat-option>
+          <mat-option value="PS Vita">PS Vita</mat-option>
+          <mat-option value="PSP">PSP</mat-option>
+          <mat-option value="Switch">Switch</mat-option>
+          <mat-option value="Wii U">Wii U</mat-option>
+          <mat-option value="Wii">Wii</mat-option>
+          <mat-option value="Game Cube">Game Cube</mat-option>
+          <mat-option value="N64">N64</mat-option>
+          <mat-option value="SNES">SNES</mat-option>
+          <mat-option value="NES">NES</mat-option>
+          <mat-option value="3DS">3DS</mat-option>
+          <mat-option value="DS">DS</mat-option>
+          <mat-option value="GBA">GBA</mat-option>
+          <mat-option value="Game Boy">Game Boy</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('platform').dirty && form.get('platform').hasError('required')">
+          Platform is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Genre</mat-label>
+        <mat-select formControlName="genre" required >
+          <mat-option value="Action">Action</mat-option>
+          <mat-option value="FPS">FPS</mat-option>
+          <mat-option value="Platform">Platform</mat-option>
+          <mat-option value="Beat em up">Beat em up</mat-option>
+          <mat-option value="Battle royale">Battle royale</mat-option>
+          <mat-option value="Action-adventure">Action-adventure</mat-option>
+          <mat-option value="RPG">RPG</mat-option>
+          <mat-option value="JRPG">JRPG</mat-option>
+          <mat-option value="MMORPG">MMORPG</mat-option>
+          <mat-option value="Roguelike">Roguelike</mat-option>
+          <mat-option value="Adventure">Adventure</mat-option>
+          <mat-option value="Visual novel">Visual novel</mat-option>
+          <mat-option value="Simulation">Simulation</mat-option>
+          <mat-option value="Strategy">Strategy</mat-option>
+          <mat-option value="Sports">Sports</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('genre').dirty && form.get('genre').hasError('required')">
+          Genre is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+    </span>
+
+    <p>
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Description" formControlName="description" name="description" ></textarea>
+      </mat-form-field>
+    </p>
+  </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancel()">Cancel</button>
+  <button mat-button color="primary" type="submit" (click)="submit(form.value)" [disabled]="form.invalid">Save</button>
+</mat-dialog-actions>

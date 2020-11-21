@@ -19,12 +19,18 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRippleModule } from '@angular/material/core';
+import { GameDialogComponent } from './shared/game-dialog/game-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { GameFormComponent } from './shared/game-form/game-form.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
     VideoGameListComponent,
     VideoGameDetailsComponent,
+    GameDialogComponent,
+    GameFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +51,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatGridListModule,
     FormsModule,
     MatRippleModule,
+    MatDialogModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

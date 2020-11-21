@@ -1,5 +1,7 @@
 use vg;
 
+db.getCollection('Games').createIndex({ name: 1, platform: 1 }, { unique: true });
+
 var GamesInsertedIds = db.getCollection('Games').insertMany([{
      "id": "5763cd4dc378a38ecd387737",
      "name": "Far Cry 5",

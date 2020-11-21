@@ -34,4 +34,8 @@ export class VideoGameDetailsComponent implements OnInit {
     this._router.navigate(['games']);
   }
 
+  public updateImageUrl(): void {
+    this._game.cover = '../../assets/images/no_picture.jpg';
+  }
+
 }

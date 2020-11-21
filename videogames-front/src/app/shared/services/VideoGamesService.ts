@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Game } from '../interfaces/Game';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
 import { defaultIfEmpty, filter } from 'rxjs/operators';
@@ -41,5 +41,13 @@ export class VideoGamesService {
     return this._http.get<Game>(this._backendURL.singleGame.replace(':id', id));
   }
 
+  create(game: Game): Observable<any> {
+    console.log(game);
+    return this._http.post<Game>(this._backendURL.allGames, game, this._options());
+  }
+
+  private _options(headerList: object = {}): any {
+    return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
+  }
 
 }

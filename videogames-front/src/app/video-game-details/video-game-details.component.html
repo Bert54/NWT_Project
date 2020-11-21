@@ -7,7 +7,7 @@
           <mat-card-subtitle class="card-container-left"><p class="mat-display-1">Genre: {{ game.genre }}</p></mat-card-subtitle>
           <mat-card-subtitle class="card-container-left"><p class="mat-display-1">Platform: {{ game.platform }}</p></mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{ game.cover }}" class="card-container-right" style="max-height:300px; width: auto;" />
+        <img mat-card-image [src]="game.cover" (error)="updateImageUrl()" class="card-container-right" />
       </div>
       <mat-divider [inset]="true"></mat-divider>
       <br />
