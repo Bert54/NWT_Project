@@ -17,11 +17,15 @@
     </mat-card>
   </section>
   <section class="came-card-controls">
-    <button class="card-return" mat-button (click)="returnToGameList()">
+    <button class="card-return" mat-raised-button (click)="returnToGameList()">
       <mat-icon svgIcon="icon-back"></mat-icon>
       Return to List
     </button>
-    <button class="card-delete" mat-button (click)="openConfirmDialog()">
+    <button class="card-edit" mat-raised-button color="primary">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+    <button class="card-delete" mat-raised-button (click)="openConfirmDialog()">
       <mat-icon svgIcon="icon-delete"></mat-icon>
       Delete
     </button>

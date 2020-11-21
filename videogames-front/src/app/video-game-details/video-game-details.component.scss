@@ -1,3 +1,11 @@
+@import '../../assets/scss/modules/_fonts.scss';
+
+$ferrum_font: 'Ferrum';
+
+.mat-display-3,.mat-display-1 {
+  font-family: $ferrum_font !important;
+}
+
 #card-container {
   width: 50%;
   margin-left: 25%;
@@ -8,7 +16,7 @@
   border: 3px groove #b3d7ff;
   background-color: #e6f2ff;
   border-radius: 10px;
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 6px 5px -3px rgba(0,0,0,0.28);
 }
 
 section.came-card-container {
@@ -23,10 +31,10 @@ section.came-card-controls {
   margin-top: 25px;
 }
 
-button.card-return {
-  border: 2px groove #e0e8ff;
+.card-return {
+  border: 2px groove #999999;
   border-radius: 10px;
-  background-color: #e0e8ff;
+  background-color: #cfcfcf;
   margin-right: 20px;
   transition: box-shadow 0.3s;
   width: 25%;
@@ -35,12 +43,28 @@ button.card-return {
   align-content: center;
 }
 
-button.card-return:hover {
+.card-return:hover {
+  box-shadow: 0px 0px 22px 8px rgba(180,180,180,1);
+  background-color: #dddddd;
+}
+
+.card-edit {
+  border: 2px groove #3333cc;
+  border-radius: 10px;
+  margin-right: 20px;
+  transition: box-shadow 0.3s;
+  width: 25%;
+  justify-content: center;
+  display: flex;
+  align-content: center;
+}
+
+.card-edit:hover {
   box-shadow: 0px 0px 22px 8px rgba(132,162,250,1);
   background-color: #84a2fa;
 }
 
-button.card-delete {
+.card-delete {
   border: 2px groove #ff3333;
   border-radius: 10px;
   background-color: #ff7d7d;
@@ -51,7 +75,7 @@ button.card-delete {
   justify-content: center;
 }
 
-button.card-delete:hover {
+.card-delete:hover {
   box-shadow: 0px 0px 22px 8px rgba(255,5,5,1);
   background-color: #ff0000;
 }

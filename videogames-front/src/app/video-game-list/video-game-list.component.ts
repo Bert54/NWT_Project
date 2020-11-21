@@ -19,7 +19,7 @@ import {DeleteDialogComponent} from '../shared/delete-dialog/delete-dialog.compo
 export class VideoGameListComponent implements OnInit {
 
   // tslint:disable-next-line:variable-name
-  _deletebuttonHover: boolean;
+  _actionbuttonHover: boolean;
 
   // tslint:disable-next-line:variable-name
   _pageSize: any;
@@ -28,7 +28,7 @@ export class VideoGameListComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   _pageEvent: PageEvent;
   // tslint:disable-next-line:variable-name
-  private _displayDeleteButtons: boolean[];
+  private _displayButtons: boolean[];
   // tslint:disable-next-line:variable-name
   private _games: Game[];
   // tslint:disable-next-line:variable-name
@@ -64,7 +64,7 @@ export class VideoGameListComponent implements OnInit {
     this._searchGenreValue = '';
     this._searchPlatformValue = '';
     this._dialogStatus = 'inactive';
-    this._deletebuttonHover = false;
+    this._actionbuttonHover = false;
   }
 
   ngOnInit(): void {
@@ -95,8 +95,8 @@ export class VideoGameListComponent implements OnInit {
     return this._currentPage;
   }
 
-  get displayDeleteButtons(): boolean[] {
-    return this._displayDeleteButtons;
+  get displayButtons(): boolean[] {
+    return this._displayButtons;
   }
 
   get isSearchMenuShown(): boolean {
@@ -116,7 +116,7 @@ export class VideoGameListComponent implements OnInit {
   }
 
   get deleteButtonHover(): boolean {
-    return this._deletebuttonHover;
+    return this._actionbuttonHover;
   }
 
 
@@ -135,8 +135,8 @@ export class VideoGameListComponent implements OnInit {
     this.filterGames();
   }
 
-  setDeleteButtonHover(isHovering: boolean): void {
-    this._deletebuttonHover = isHovering;
+  setActionButtonHover(isHovering: boolean): void {
+    this._actionbuttonHover = isHovering;
   }
 
   private updateDisplayedPages(): void {
@@ -151,14 +151,14 @@ export class VideoGameListComponent implements OnInit {
         this._displayedGames.push(this._filteredGames[i]);
       }
     }
-    this._displayDeleteButtons = [];
+    this._displayButtons = [];
     for (let i = 0 ; i < this._pageSize ; i++) {
-      this._displayDeleteButtons.push(false);
+      this._displayButtons.push(false);
     }
   }
 
   goToGame(id: string): void {
-    if (!this._deletebuttonHover) {
+    if (!this._actionbuttonHover) {
       this._router.navigate(['games', id]);
     }
   }
@@ -260,8 +260,8 @@ export class VideoGameListComponent implements OnInit {
 
   public openConfirmDialog(id: string): void {
     this._confirmDialog = this._dialog.open(DeleteDialogComponent, {
-      width: '500px',
-      height: '200px',
+      width: '350px',
+      height: '125px',
       disableClose: true,
       data: {
         id,

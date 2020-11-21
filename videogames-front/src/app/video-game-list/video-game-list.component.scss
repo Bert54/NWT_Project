@@ -1,3 +1,21 @@
+@import '../../assets/scss/modules/_fonts.scss';
+
+$ferrum_font: 'Ferrum';
+
+.filter-header {
+  font-size:25px;
+  color:dodgerblue;
+  margin-top: 15px;
+  margin-left:15px;
+  font-family: $ferrum_font !important;
+}
+
+mat-panel-title {
+  font-family: $ferrum_font !important;
+  font-size: 20px;
+  justify-content: center;
+}
+
 div.game-list-container {
   display: flex;
   flex-direction: row;
@@ -15,14 +33,14 @@ div.game-menu {
 }
 
 div.game-list-with-params {
-  width: 55%;
+  width: 60%;
 }
 
 div.game-list-params {
   background-color: #eff5ff;
   border:  1px groove rgba(0,0,0,0.1);
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   box-shadow: 0px 6px 5px -3px rgba(0,0,0,0.28);
 }
 
@@ -65,11 +83,9 @@ mat-list-item {
   color: rgba(0, 0, 0, 0.87);
   background-color: #e0e8ff;
   font-size: 14px;
-  position: relative;
   margin-bottom: 10px;
   transition: box-shadow 0.3s;
   cursor: pointer;
-  display: block;
 }
 
 mat-list-item:hover {
@@ -77,8 +93,16 @@ mat-list-item:hover {
   background-color: #84a2fa;
 }
 
+button.game-item-edit {
+  margin-right: 10px;
+}
+
 button.game-item-delete:hover {
   background-color: darkorange;
+}
+
+button.game-item-edit:hover {
+  background-color: cornflowerblue;
 }
 
 #list-elem-name {

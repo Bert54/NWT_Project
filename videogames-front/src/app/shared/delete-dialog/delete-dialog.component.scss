@@ -1,0 +1,40 @@
+section {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.button-cancel {
+  border: 2px groove #ff4444;
+  border-radius: 10px;
+  background-color: #ff7d7d;
+  transition: box-shadow 0.3s;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 35%;
+  margin-right: 10px;
+}
+
+.button-cancel:hover {
+  box-shadow: 0px 0px 22px 8px rgba(255,5,5,1);
+  background-color: #ff0000;
+}
+
+.button-confirm {
+  border: 2px groove #a6ff4d;
+  border-radius: 10px;
+  background-color: #99ff99;
+  transition: box-shadow 0.3s;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 35%;
+  margin-left: 10px;
+}
+
+.button-confirm:hover {
+  box-shadow: 0px 0px 22px 8px rgba(5,255,5,1);
+  background-color: #00ff00;
+}

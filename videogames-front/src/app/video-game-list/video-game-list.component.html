@@ -23,7 +23,7 @@
   </div>
   <div class="game-list-with-params">
     <div class="game-list-params" *ngIf="isSearchMenuShown">
-      <p style="font-size:25px; color:dodgerblue; margin-top: 15px; margin-left:15px" >
+      <p class="filter-header">
         <mat-icon svgIcon="icon-search"></mat-icon>
         Search Options
       </p>
@@ -80,7 +80,7 @@
           </span>
         </mat-list-item>
         <mat-list-item matRipple (click)="goToGame(game.id)" *ngFor="let game of displayedGames; let i = index"
-                       (mouseenter)="displayDeleteButtons[i]=true" (mouseleave)="displayDeleteButtons[i]=false">
+                       (mouseenter)="displayButtons[i]=true" (mouseleave)="displayButtons[i]=false">
           <span id="list-elem-name">
             <h3>{{ game.name }}</h3>
           </span>
@@ -90,8 +90,11 @@
           <span id="list-elem-prop">
             <p>{{ game.platform }}</p>
           </span>
-          <div *ngIf="displayDeleteButtons[i]" >
-            <button mat-mini-fab color="warn" class="game-item-delete" (click)="openConfirmDialog(game.id)" (mouseenter)="setDeleteButtonHover(true)" (mouseleave)="setDeleteButtonHover(false)">
+          <div *ngIf="displayButtons[i]" style="display: flex; flex-direction: row;" >
+            <button mat-mini-fab color="primary" class="game-item-edit" (mouseenter)="setActionButtonHover(true)" (mouseleave)="setActionButtonHover(false)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" class="game-item-delete" (click)="openConfirmDialog(game.id)" (mouseenter)="setActionButtonHover(true)" (mouseleave)="setActionButtonHover(false)">
               <mat-icon svgIcon="icon-delete"></mat-icon>
             </button>
           </div>

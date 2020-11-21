@@ -45,8 +45,8 @@ export class VideoGameDetailsComponent implements OnInit {
 
   public openConfirmDialog(): void {
     this._confirmDialog = this._dialog.open(DeleteDialogComponent, {
-      width: '500px',
-      height: '200px',
+      width: '350px',
+      height: '125px',
       disableClose: true,
       data: {
         id: this._game.id,

@@ -1,5 +1,13 @@
-<p>Are you sure? This action cannot be be undone.</p>
-<span style="display:flex; flex-direction: row;">
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onConfirm()">Confirm</button>
-</span>
+<section>
+  <p>Are you sure? This action cannot be undone.</p>
+  <mat-dialog-actions align="center">
+    <button class="button-cancel" mat-button (click)="onCancel()">
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </button>
+    <button class="button-confirm" mat-button (click)="onConfirm()">
+      <mat-icon>check</mat-icon>
+      Confirm
+    </button>
+  </mat-dialog-actions>
+</section>
