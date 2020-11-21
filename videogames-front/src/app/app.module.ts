@@ -23,6 +23,7 @@ import { GameDialogComponent } from './shared/game-dialog/game-dialog.component'
 import { MatDialogModule } from '@angular/material/dialog';
 import { GameFormComponent } from './shared/game-form/game-form.component';
 import { MatSelectModule } from '@angular/material/select';
+import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
     VideoGameDetailsComponent,
     GameDialogComponent,
     GameFormComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,

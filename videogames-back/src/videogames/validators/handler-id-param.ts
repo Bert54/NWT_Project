@@ -1,6 +1,6 @@
 import { IsMongoId, IsNotEmpty } from 'class-validator';
 
-export class FetchOneHandlerParams {
+export class HandlerIdParam {
   @IsMongoId()
   @IsNotEmpty()
   id: string;

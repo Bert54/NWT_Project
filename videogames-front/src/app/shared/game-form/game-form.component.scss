@@ -1,8 +1,11 @@
 img {
   border: 2px groove rgba(0,0,0,0.3);
   margin-left: 20px;
+  display: block;
   max-width:200px;
-  height:auto;
+  max-height:300px;
+  width: auto;
+  height: auto;
 }
 
 .full-width {
@@ -10,7 +13,7 @@ img {
 }
 
 .image-container {
-  width:200px;
+  max-width:200px;
   min-height: 300px;
   display: flex;
   flex-direction: column;

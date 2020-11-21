@@ -32,4 +32,11 @@ export class GamesDao {
       );
   }
 
+  findByIdAndRemove(id: string): Observable<Game | void> {
+    return from(this._gameModel.findByIdAndRemove(id))
+      .pipe(
+        map((doc: MongooseDocument) => !!doc ? doc.toJSON() : undefined),
+      );
+  }
+
 }

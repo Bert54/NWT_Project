@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from '../shared/interfaces/Game';
 import { VideoGamesService } from '../shared/services/VideoGamesService';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -15,7 +17,10 @@ export class VideoGameDetailsComponent implements OnInit {
   private _game: Game;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _route: ActivatedRoute, private _vgService: VideoGamesService, private _router: Router) {
+  private _confirmDialog: MatDialogRef<DeleteDialogComponent>;
+
+  // tslint:disable-next-line:variable-name
+  constructor(private _route: ActivatedRoute, private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog) {
     this._game = {} as Game;
   }
 
@@ -36,6 +41,26 @@ export class VideoGameDetailsComponent implements OnInit {
 
   public updateImageUrl(): void {
     this._game.cover = '../../assets/images/no_picture.jpg';
+  }
+
+  public openConfirmDialog(): void {
+    this._confirmDialog = this._dialog.open(DeleteDialogComponent, {
+      width: '500px',
+      height: '200px',
+      disableClose: true,
+      data: {
+        id: this._game.id,
+      }
+    });
+    this._confirmDialog.afterClosed()
+      .subscribe(
+        (result: boolean) => {
+          if (result) {
+            this._vgService.delete(this._game.id).subscribe();
+            this.returnToGameList();
+          }
+        }
+      );
   }
 
 }

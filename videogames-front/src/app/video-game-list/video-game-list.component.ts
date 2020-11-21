@@ -8,6 +8,7 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {GameDialogComponent} from '../shared/game-dialog/game-dialog.component';
 import {filter, map, mergeMap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {DeleteDialogComponent} from '../shared/delete-dialog/delete-dialog.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -16,6 +17,9 @@ import {Observable} from 'rxjs';
   styleUrls: ['./video-game-list.component.scss']
 })
 export class VideoGameListComponent implements OnInit {
+
+  // tslint:disable-next-line:variable-name
+  _deletebuttonHover: boolean;
 
   // tslint:disable-next-line:variable-name
   _pageSize: any;
@@ -46,6 +50,9 @@ export class VideoGameListComponent implements OnInit {
   private _dialogStatus: string;
 
   // tslint:disable-next-line:variable-name
+  private _confirmDialog: MatDialogRef<DeleteDialogComponent>;
+
+  // tslint:disable-next-line:variable-name
   constructor(private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog) {
     this._games = [];
     this._filteredGames = [];
@@ -57,6 +64,7 @@ export class VideoGameListComponent implements OnInit {
     this._searchGenreValue = '';
     this._searchPlatformValue = '';
     this._dialogStatus = 'inactive';
+    this._deletebuttonHover = false;
   }
 
   ngOnInit(): void {
@@ -107,6 +115,11 @@ export class VideoGameListComponent implements OnInit {
     return this._searchPlatformValue;
   }
 
+  get deleteButtonHover(): boolean {
+    return this._deletebuttonHover;
+  }
+
+
   setSearchNameValue(newValue: string): void {
     this._searchNameValue = newValue;
     this.filterGames();
@@ -120,6 +133,10 @@ export class VideoGameListComponent implements OnInit {
   setSearchPlatformValue(newValue: string): void {
     this._searchPlatformValue = newValue;
     this.filterGames();
+  }
+
+  setDeleteButtonHover(isHovering: boolean): void {
+    this._deletebuttonHover = isHovering;
   }
 
   private updateDisplayedPages(): void {
@@ -141,7 +158,9 @@ export class VideoGameListComponent implements OnInit {
   }
 
   goToGame(id: string): void {
-    this._router.navigate([ 'games', id ]);
+    if (!this._deletebuttonHover) {
+      this._router.navigate(['games', id]);
+    }
   }
 
   switchDisplayedGamed(event?: PageEvent): any {
@@ -237,6 +256,31 @@ export class VideoGameListComponent implements OnInit {
           this._dialogStatus = 'inactive';
           this.filterGames();
         });
+  }
+
+  public openConfirmDialog(id: string): void {
+    this._confirmDialog = this._dialog.open(DeleteDialogComponent, {
+      width: '500px',
+      height: '200px',
+      disableClose: true,
+      data: {
+        id,
+      }
+    });
+    this._confirmDialog.afterClosed()
+      .subscribe(
+        (result: boolean) => {
+          if (result) {
+            this._vgService.delete(id).subscribe(_ => {
+              this._vgService.fetch().subscribe((games: Game[]) => {
+                this._games = games;
+                this._filteredGames = games;
+                this.updateDisplayedPages();
+              });
+            });
+          }
+        }
+      );
   }
 
   private _add(game: Game): Observable<Game[]> {

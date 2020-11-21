@@ -46,4 +46,16 @@ export class VideogamesService {
       );
   }
 
+  delete(id: string): Observable<void> {
+    return this._gamesDao.findByIdAndRemove(id)
+      .pipe(
+        catchError(e => throwError(new NotFoundException(e.message))),
+        mergeMap(_ =>
+          !!_ ?
+            of(undefined) :
+            throwError(new NotFoundException(`Game with id '${id}' not found`)),
+        ),
+      );
+  }
+
 }

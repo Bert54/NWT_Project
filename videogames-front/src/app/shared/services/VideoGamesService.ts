@@ -3,7 +3,7 @@ import { Game } from '../interfaces/Game';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
-import { defaultIfEmpty, filter } from 'rxjs/operators';
+import {defaultIfEmpty, filter, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +42,14 @@ export class VideoGamesService {
   }
 
   create(game: Game): Observable<any> {
-    console.log(game);
     return this._http.post<Game>(this._backendURL.allGames, game, this._options());
+  }
+
+  delete(id: string): Observable<string> {
+    return this._http.delete<void>(this._backendURL.singleGame.replace(':id', id))
+      .pipe(
+        map(_ => id)
+      );
   }
 
   private _options(headerList: object = {}): any {

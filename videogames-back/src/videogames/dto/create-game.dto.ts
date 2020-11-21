@@ -11,7 +11,7 @@ export class CreateGameDto {
   cover: string;
 
   @IsString()
-  @IsIn(["Action","FPS","Platform","Beat em 'up","Battle royale","Action-adventure","RPG","JRPG","MMORPG","Roguelike","Adventure","Visual novel","Simulation","Strategy","Sports","Other"])
+  @IsIn(["Action","FPS","Platform","Beat em up","Battle royale","Action-adventure","RPG","JRPG","MMORPG","Roguelike","Adventure","Visual novel","Simulation","Strategy","Sports","Other"])
   @IsNotEmpty()
   genre: string;
 
