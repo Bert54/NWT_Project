@@ -24,6 +24,8 @@ export class VideoGameListComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   private _games: Game[];
   // tslint:disable-next-line:variable-name
+  private _filteredGames: Game[];
+  // tslint:disable-next-line:variable-name
   private _displayedGames: Game[];
   // tslint:disable-next-line:variable-name
   private _isSearchMenuShown;
@@ -37,6 +39,7 @@ export class VideoGameListComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   constructor(private _vgService: VideoGamesService, private _router: Router) {
     this._games = [];
+    this._filteredGames = [];
     this._displayedGames = [];
     this._pageSize = 10;
     this._currentPage = 0;
@@ -46,8 +49,20 @@ export class VideoGameListComponent implements OnInit {
     this._searchPlatformValue = '';
   }
 
+  ngOnInit(): void {
+    this._vgService.fetch().subscribe((games: Game[]) => {
+      this._games = games;
+      this._filteredGames = games;
+      this.updateDisplayedPages();
+    });
+  }
+
   get games(): Game[] {
     return this._games;
+  }
+
+  get filteredGames(): Game[] {
+    return this._filteredGames;
   }
 
   get displayedGames(): Game[] {
@@ -84,26 +99,29 @@ export class VideoGameListComponent implements OnInit {
 
   setSearchNameValue(newValue: string): void {
     this._searchNameValue = newValue;
+    this.filterGames();
   }
 
   setSearchGenreValue(newValue: string): void {
     this._searchGenreValue = newValue;
+    this.filterGames();
   }
 
   setSearchPlatformValue(newValue: string): void {
     this._searchPlatformValue = newValue;
+    this.filterGames();
   }
 
   private updateDisplayedPages(): void {
     this._displayedGames = [];
-    if ((this._currentPage + 1) * this.pageSize >= this._games.length) {
-      for (let i = this._currentPage * this._pageSize ; i < this._games.length ; i++) {
-        this._displayedGames.push(this._games[i]);
+    if ((this._currentPage + 1) * this.pageSize >= this._filteredGames.length) {
+      for (let i = this._currentPage * this._pageSize ; i < this._filteredGames.length ; i++) {
+        this._displayedGames.push(this._filteredGames[i]);
       }
     }
     else {
       for (let i = this._currentPage * this._pageSize ; i < (this._currentPage + 1) * this._pageSize ; i++) {
-        this._displayedGames.push(this._games[i]);
+        this._displayedGames.push(this._filteredGames[i]);
       }
     }
     this._displayDeleteButtons = [];
@@ -111,14 +129,6 @@ export class VideoGameListComponent implements OnInit {
       this._displayDeleteButtons.push(false);
     }
   }
-
-  ngOnInit(): void {
-    this._vgService.fetch().subscribe((games: Game[]) => {
-      this._games = games;
-      this.updateDisplayedPages();
-    });
-  }
-
 
   goToGame(id: string): void {
     this._router.navigate([ 'games', id ]);
@@ -134,12 +144,40 @@ export class VideoGameListComponent implements OnInit {
     this._isSearchMenuShown = !this._isSearchMenuShown;
   }
 
+  filterGames(): void {
+    this._filteredGames = [];
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0 ; i < this._games.length ; i++) {
+      const curGame: Game = this._games[i];
+      let addToDisplayList = true;
+      if (!this._searchNameValue.isEmpty) {
+        if (!curGame.name.toLowerCase().includes(this._searchNameValue.toLowerCase())) {
+          addToDisplayList = false;
+        }
+      }
+      if (!this._searchGenreValue.isEmpty) {
+        if (addToDisplayList && !curGame.genre.toLowerCase().includes(this._searchGenreValue.toLowerCase())) {
+          addToDisplayList = false;
+        }
+      }
+      if (!this._searchPlatformValue.isEmpty) {
+        if (addToDisplayList && !curGame.platform.toLowerCase().includes(this._searchPlatformValue.toLowerCase())) {
+          addToDisplayList = false;
+        }
+      }
+      if (addToDisplayList) {
+        this._filteredGames.push(curGame);
+      }
+    }
+    this.updateDisplayedPages();
+  }
+
   sortGameList(sort: Sort): any {
     let sortedData: Game[];
-    const data = this._games.slice();
+    const data = this._filteredGames.slice();
     if (!sort.active || sort.direction === '') {
       sortedData = data;
-      this._games = sortedData;
+      this._filteredGames = sortedData;
       this.updateDisplayedPages();
       return;
     }
@@ -153,7 +191,7 @@ export class VideoGameListComponent implements OnInit {
         default: return 0;
       }
     });
-    this._games = sortedData;
+    this._filteredGames = sortedData;
     this.updateDisplayedPages();
   }
 

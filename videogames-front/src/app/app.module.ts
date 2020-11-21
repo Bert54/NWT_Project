@@ -18,6 +18,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatInputModule,
     MatGridListModule,
     FormsModule,
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

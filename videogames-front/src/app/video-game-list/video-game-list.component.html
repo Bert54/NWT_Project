@@ -34,7 +34,7 @@
             <div class="input-wrap">
               <mat-form-field appearance="outline" >
                 <mat-label>Name</mat-label>
-                <input matInput placeholder="Name" [(ngModel)]="_searchNameValue" />
+                <input matInput placeholder="Name" [(ngModel)]="_searchNameValue" (input)="filterGames()" />
                 <button mat-button *ngIf="searchNameValue" matSuffix mat-icon-button aria-label="Clear" (click)="setSearchNameValue('')">
                   <mat-icon>close</mat-icon>
                 </button>
@@ -45,7 +45,7 @@
             <div class="input-wrap">
               <mat-form-field appearance="outline">
                 <mat-label>Genre</mat-label>
-                <input matInput placeholder="Genre" [(ngModel)]="_searchGenreValue" />
+                <input matInput placeholder="Genre" [(ngModel)]="_searchGenreValue" (input)="filterGames()" />
                 <button mat-button *ngIf="searchGenreValue" matSuffix mat-icon-button aria-label="Clear" (click)="setSearchGenreValue('')">
                   <mat-icon>close</mat-icon>
                 </button>
@@ -56,7 +56,7 @@
             <div class="input-wrap">
               <mat-form-field appearance="outline">
                 <mat-label>Platform</mat-label>
-                <input matInput placeholder="Platform" [(ngModel)]="_searchPlatformValue" />
+                <input matInput placeholder="Platform" [(ngModel)]="_searchPlatformValue" (input)="filterGames()" />
                 <button mat-button *ngIf="searchPlatformValue" matSuffix mat-icon-button aria-label="Clear" (click)="setSearchPlatformValue('')">
                   <mat-icon>close</mat-icon>
                 </button>
@@ -79,7 +79,7 @@
             <p mat-sort-header="platform">Platform</p>
           </span>
         </mat-list-item>
-        <mat-list-item (click)="goToGame(game.id)" *ngFor="let game of displayedGames; let i = index"
+        <mat-list-item matRipple  (click)="goToGame(game.id)" *ngFor="let game of displayedGames; let i = index"
                        (mouseenter)="displayDeleteButtons[i]=true" (mouseleave)="displayDeleteButtons[i]=false">
           <span id="list-elem-name">
             <h3>{{ game.name }}</h3>
@@ -97,7 +97,7 @@
           </div>
         </mat-list-item>
       </mat-list>
-      <mat-paginator [length]="games.length"
+      <mat-paginator [length]="filteredGames.length"
                      [pageSize]="pageSize"
                      [pageIndex]="currentPage"
                      [pageSizeOptions]="[1, 5, 10, 25, 100]"
