@@ -4,6 +4,8 @@ import { Game } from '../shared/interfaces/Game';
 import { VideoGamesService } from '../shared/services/VideoGamesService';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
+import { GameDialogComponent } from '../shared/game-dialog/game-dialog.component';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,6 +20,9 @@ export class VideoGameDetailsComponent implements OnInit {
 
   // tslint:disable-next-line:variable-name
   private _confirmDialog: MatDialogRef<DeleteDialogComponent>;
+
+  // tslint:disable-next-line:variable-name
+  private _gamesDialog: MatDialogRef<GameDialogComponent>;
 
   // tslint:disable-next-line:variable-name
   constructor(private _route: ActivatedRoute, private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog) {
@@ -61,6 +66,34 @@ export class VideoGameDetailsComponent implements OnInit {
           }
         }
       );
+  }
+
+  public showEditDialog(): void {
+    this._vgService.fetchOne(this._game.id).subscribe((game: Game) => {
+      this._openEditDialog(game);
+    });
+  }
+
+  private _openEditDialog(game: Game): void {
+    this._gamesDialog = this._dialog.open(GameDialogComponent, {
+      width: '500px',
+      height: '670px',
+      disableClose: true,
+      data: game
+    });
+    this._gamesDialog.afterClosed()
+      .pipe(
+        filter(_ => !!_),
+        map((_: Game) => {
+          const id = _.id;
+          delete _.id;
+          return { id, update: _ };
+        }),
+        mergeMap(_ => this._vgService.update(_.id, _.update))
+      )
+      .subscribe((editedGame: Game) => {
+        this._game = editedGame;
+      });
   }
 
 }

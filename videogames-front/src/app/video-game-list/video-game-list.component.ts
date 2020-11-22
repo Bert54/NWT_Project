@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {Game} from '../shared/interfaces/Game';
-import {VideoGamesService} from '../shared/services/VideoGamesService';
-import {Router} from '@angular/router';
-import {PageEvent} from '@angular/material/paginator';
-import {Sort} from '@angular/material/sort';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {GameDialogComponent} from '../shared/game-dialog/game-dialog.component';
-import {filter, map, mergeMap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
-import {DeleteDialogComponent} from '../shared/delete-dialog/delete-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { Game } from '../shared/interfaces/Game';
+import { VideoGamesService } from '../shared/services/VideoGamesService';
+import { Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { GameDialogComponent } from '../shared/game-dialog/game-dialog.component';
+import { filter, map, mergeMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
+import {MatRippleModule, RippleGlobalOptions, RippleRef} from '@angular/material/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -46,11 +47,12 @@ export class VideoGameListComponent implements OnInit {
 
   // tslint:disable-next-line:variable-name
   private _gamesDialog: MatDialogRef<GameDialogComponent>;
-  // tslint:disable-next-line:variable-name
-  private _dialogStatus: string;
 
   // tslint:disable-next-line:variable-name
   private _confirmDialog: MatDialogRef<DeleteDialogComponent>;
+
+  // tslint:disable-next-line:variable-name
+  private _gameListElementDisabledRipple: boolean;
 
   // tslint:disable-next-line:variable-name
   constructor(private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog) {
@@ -63,8 +65,8 @@ export class VideoGameListComponent implements OnInit {
     this._searchNameValue = '';
     this._searchGenreValue = '';
     this._searchPlatformValue = '';
-    this._dialogStatus = 'inactive';
     this._actionbuttonHover = false;
+    this._gameListElementDisabledRipple = false;
   }
 
   ngOnInit(): void {
@@ -115,10 +117,13 @@ export class VideoGameListComponent implements OnInit {
     return this._searchPlatformValue;
   }
 
-  get deleteButtonHover(): boolean {
+  get actionButtonHover(): boolean {
     return this._actionbuttonHover;
   }
 
+  get gameListElementEnabledRipple(): boolean {
+    return this._gameListElementDisabledRipple;
+  }
 
   setSearchNameValue(newValue: string): void {
     this._searchNameValue = newValue;
@@ -137,6 +142,7 @@ export class VideoGameListComponent implements OnInit {
 
   setActionButtonHover(isHovering: boolean): void {
     this._actionbuttonHover = isHovering;
+    this._gameListElementDisabledRipple = isHovering;
   }
 
   private updateDisplayedPages(): void {
@@ -230,17 +236,11 @@ export class VideoGameListComponent implements OnInit {
   }
 
   showGameDialog(): void {
-    // set dialog status
-    this._dialogStatus = 'active';
-
-    // open modal
     this._gamesDialog = this._dialog.open(GameDialogComponent, {
       width: '500px',
-      height: '650px',
+      height: '670px',
       disableClose: true,
     });
-
-    // subscribe to afterClosed observable to set dialog status and do process
     this._gamesDialog.afterClosed()
       .pipe(
         filter(_ => !!_),
@@ -253,7 +253,6 @@ export class VideoGameListComponent implements OnInit {
       .subscribe(
         (games: Game[]) => {
           this._games = games;
-          this._dialogStatus = 'inactive';
           this.filterGames();
         });
   }
@@ -283,6 +282,33 @@ export class VideoGameListComponent implements OnInit {
       );
   }
 
+  public showEditDialog(game: Game): void {
+    this._gamesDialog = this._dialog.open(GameDialogComponent, {
+      width: '500px',
+      height: '670px',
+      disableClose: true,
+      data: game
+    });
+
+    this._gamesDialog.afterClosed()
+      .pipe(
+        filter(_ => !!_),
+        map((_: Game) => {
+          const id = _.id;
+          delete _.id;
+          return { id, update: _ };
+        }),
+        mergeMap(_ => this._vgService.update(_.id, _.update))
+      )
+      .subscribe(_ => {
+        this._vgService.fetch().subscribe((games: Game[]) => {
+          this._games = games;
+          this._filteredGames = games;
+          this.updateDisplayedPages();
+        });
+      });
+  }
+
   private _add(game: Game): Observable<Game[]> {
     return this._vgService
       .create(game)
@@ -290,5 +316,4 @@ export class VideoGameListComponent implements OnInit {
         mergeMap(_ => this._vgService.fetch())
       );
   }
-
 }

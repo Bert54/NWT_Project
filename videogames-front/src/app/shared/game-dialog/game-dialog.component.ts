@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit, Optional} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Game} from '../interfaces/Game';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Game } from '../interfaces/Game';
 
 @Component({
   selector: 'app-game-dialog',
@@ -15,7 +15,7 @@ export class GameDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get person(): Game {
+  get game(): Game {
     return this._game;
   }
 

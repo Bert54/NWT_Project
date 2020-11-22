@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Game } from '../interfaces/game.interface';
 import { from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CreateGameDto } from '../dto/create-game.dto';
+import { GameDto } from '../dto/game.dto';
 
 @Injectable()
 export class GamesDao {
@@ -25,7 +25,7 @@ export class GamesDao {
       );
   }
 
-  save(game: CreateGameDto): Observable<Game> {
+  save(game: GameDto): Observable<Game> {
     return from(new this._gameModel(game).save())
       .pipe(
         map((doc: MongooseDocument) => doc.toJSON()),
@@ -34,6 +34,13 @@ export class GamesDao {
 
   findByIdAndRemove(id: string): Observable<Game | void> {
     return from(this._gameModel.findByIdAndRemove(id))
+      .pipe(
+        map((doc: MongooseDocument) => !!doc ? doc.toJSON() : undefined),
+      );
+  }
+
+  findByIdAndUpdate(id: string, person: GameDto): Observable<Game | void> {
+    return from(this._gameModel.findByIdAndUpdate(id, person, { new: true, runValidators: true }))
       .pipe(
         map((doc: MongooseDocument) => !!doc ? doc.toJSON() : undefined),
       );

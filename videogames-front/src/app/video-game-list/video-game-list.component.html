@@ -79,7 +79,7 @@
             <p mat-sort-header="platform">Platform</p>
           </span>
         </mat-list-item>
-        <mat-list-item matRipple (click)="goToGame(game.id)" *ngFor="let game of displayedGames; let i = index"
+        <mat-list-item matRipple [matRippleDisabled]="gameListElementEnabledRipple" (click)="goToGame(game.id)" *ngFor="let game of displayedGames; let i = index"
                        (mouseenter)="displayButtons[i]=true" (mouseleave)="displayButtons[i]=false">
           <span id="list-elem-name">
             <h3>{{ game.name }}</h3>
@@ -91,7 +91,7 @@
             <p>{{ game.platform }}</p>
           </span>
           <div *ngIf="displayButtons[i]" style="display: flex; flex-direction: row;" >
-            <button mat-mini-fab color="primary" class="game-item-edit" (mouseenter)="setActionButtonHover(true)" (mouseleave)="setActionButtonHover(false)">
+            <button mat-mini-fab color="primary" class="game-item-edit" (click)="showEditDialog(game)" (mouseenter)="setActionButtonHover(true)" (mouseleave)="setActionButtonHover(false)">
               <mat-icon>edit</mat-icon>
             </button>
             <button mat-mini-fab color="warn" class="game-item-delete" (click)="openConfirmDialog(game.id)" (mouseenter)="setActionButtonHover(true)" (mouseleave)="setActionButtonHover(false)">

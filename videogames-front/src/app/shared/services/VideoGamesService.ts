@@ -52,6 +52,10 @@ export class VideoGamesService {
       );
   }
 
+  update(id: string, game: Game): Observable<any> {
+    return this._http.put<Game>(this._backendURL.singleGame.replace(':id', id), game, this._options());
+  }
+
   private _options(headerList: object = {}): any {
     return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
   }

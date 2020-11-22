@@ -1,17 +1,16 @@
-<h2 mat-dialog-title *ngIf="isUpdateMode">Update {{ form.get('name').value }}</h2>
+<h2 mat-dialog-title *ngIf="isUpdateMode">Update {{ model.name }}</h2>
 <h2 mat-dialog-title *ngIf="!isUpdateMode">Add new game to collection</h2>
-
-<mat-divider></mat-divider>
 
 <mat-dialog-content>
   <form novalidate [formGroup]="form">
 
-    <p *ngIf="isUpdateMode">
-      <span style="width:100%">ID (disabled)</span><br/>
-      <span style="width:100%">{{model.id}}</span>
+    <p *ngIf="isUpdateMode" class="form-game-id">
+      <span style="width:100%">ID: {{model.id}}</span><br/>
     </p>
 
-    <table class="full-width" cellspacing="0">
+    <mat-divider></mat-divider>
+
+    <table class="full-width" cellspacing="0" style="margin-top: 10px;">
       <tr>
         <td>
           <mat-form-field appearance="outline" class="full-width" [class.mgb15]="form.get('name').dirty && form.get('name').invalid">

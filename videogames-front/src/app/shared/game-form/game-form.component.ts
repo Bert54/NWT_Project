@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {Game} from '../interfaces/Game';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Game } from '../interfaces/Game';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-game-form',
@@ -83,24 +83,15 @@ export class GameFormComponent implements OnInit, OnChanges {
     return this._cancel$;
   }
 
-  /**
-   * Returns private property _submit$
-   */
   @Output('submit')
   get submit$(): EventEmitter<Game> {
     return this._submit$;
   }
 
-  /**
-   * Function to emit event to cancel process
-   */
   cancel(): void {
     this._cancel$.emit();
   }
 
-  /**
-   * Function to emit event to submit form and person
-   */
   submit(game: Game): void {
     this._submit$.emit(game);
   }
