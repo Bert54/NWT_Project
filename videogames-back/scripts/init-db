@@ -40,3 +40,5 @@ var GamesInsertedIds = db.getCollection('Games').insertMany([{
 ]).insertedIds;
 
 db.getCollection('Games').createIndex({ name: 1, platform: 1 }, { unique: true });
+
+db.getCollection('Users').createIndex({ "username": 1 }, { unique: true });

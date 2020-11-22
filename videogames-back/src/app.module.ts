@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
-import { VideogamesController } from './videogames/videogames.controller';
 import { VideogamesModule } from './videogames/videogames.module';
 import * as Config from 'config';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -19,6 +20,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         useFindAndModify: Config.get<MongooseModuleOptions>('mongodb.options.useFindAndModify'),
       })
     }),
+    AuthModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
