@@ -73,6 +73,7 @@
       </p>
     </div>
     <div class="game-list">
+      <div *ngIf="hasError" >{{errorContent}}</div>
       <mat-list matSort (matSortChange)="sortGameList($event)">
         <mat-list-item class="game-list-header">
           <span id="list-elem-name">
