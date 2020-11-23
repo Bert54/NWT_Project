@@ -2,28 +2,28 @@
 <section class="form">
   <form [formGroup]="form">
     <fieldset>
-      <legend>Subscribe</legend>
-      <div class="form-field">
+      <legend>Register</legend>
+      <p class="form-field">
         <label>Username:</label>
         <input matInput name="username" formControlName="username">
-      </div>
-      <div class="form-field">
+      </p>
+      <p class="form-field">
         <label>Password:</label>
         <input matInput name="password" formControlName="password"
              type="password">
-      </div>
-      <div class="form-field">
+      </p>
+      <p class="form-field">
         <label>Confirm Password:</label>
         <input matInput name="cpassword" formControlName="cpassword"
              type="password">
         <mat-error *ngIf="form.get('cpassword').dirty && form.hasError('notSame')">
           Passwords must match
         </mat-error>
-      </div>
+      </p>
     </fieldset>
-    <div class="form-buttons">
-      <button class="button button-primary"
+    <p class="form-buttons">
+      <button class="button-submit"
               (click)="signup(form.value)">Signup</button>
-    </div>
+    </p>
   </form>
 </section>

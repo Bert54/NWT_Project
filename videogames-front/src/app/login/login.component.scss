@@ -2,18 +2,50 @@
   margin-top: 30px;
   margin-left: 40%;
   margin-right: 40%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  display: flex;
   position: relative;
   float: top;
+  display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   background-color: #eff5ff;
-  padding-left: 20px;
-  padding-right: 25px;
+  padding: 20px 25px 20px 20px;
   border:  1px groove rgba(0,0,0,0.1);
   border-radius: 5px;
   box-shadow: 0px 6px 5px -3px rgba(0,0,0,0.28);
+}
+
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.button-submit {
+  border: 2px groove #a6ff4d;
+  border-radius: 10px;
+  background-color: #99ff99;
+  transition: box-shadow 0.3s;
+  width: 35%;
+}
+
+.button-submit:hover {
+  box-shadow: 0px 0px 22px 8px rgba(5,255,5,1);
+  background-color: #00ff00;
+}
+
+.form-buttons {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.full-width {
+  background-color: white;
+  border:  1px groove rgba(0,0,0,0.1);
+  border-radius: 5px;
+  height: 59px;
+  margin-bottom: 20px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
