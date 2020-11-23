@@ -33,6 +33,10 @@ export class VideoGameListComponent implements OnInit {
   _searchNameValue: any;
   _searchGenreValue: any;
   _searchPlatformValue: any;
+  // tslint:disable-next-line:variable-name
+  private _hasError = false;
+  // tslint:disable-next-line:variable-name
+  private _errorContent: string;
 
   private _gamesDialog: MatDialogRef<GameDialogComponent>;
 
@@ -64,6 +68,14 @@ export class VideoGameListComponent implements OnInit {
       this.updateDisplayedPages();
     });
     this._authService.refreshSessionStatus();
+  }
+
+  get hasError(): boolean {
+    return this._hasError;
+  }
+
+  get errorContent(): string {
+    return this._errorContent;
   }
 
   get games(): Game[] {
@@ -229,6 +241,7 @@ export class VideoGameListComponent implements OnInit {
   }
 
   showGameDialog(): void {
+    this._hasError = false;
     this._gamesDialog = this._dialog.open(GameDialogComponent, {
       width: '500px',
       height: '670px',
@@ -247,7 +260,17 @@ export class VideoGameListComponent implements OnInit {
         (games: Game[]) => {
           this._games = games;
           this.filterGames();
-        });
+        },
+        err => {
+          this._hasError = true;
+          if (err.status === 409){
+            this._errorContent = 'The name of the game already exists';
+            console.log(err);
+          }else{
+            this._errorContent = err.status + ' : ' + err.message;
+          }
+        }
+      );
   }
 
   public openConfirmDialog(id: string): void {

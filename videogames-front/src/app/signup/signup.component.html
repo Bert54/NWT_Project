@@ -1,6 +1,6 @@
 <form [formGroup]="form">
   <fieldset>
-    <legend>Login</legend>
+    <legend>Subscribe</legend>
     <div class="form-field">
       <label>Username:</label>
       <input matInput name="username" formControlName="username">
@@ -23,4 +23,5 @@
     <button class="button button-primary"
             (click)="signup(form.value)">Signup</button>
   </div>
+  <div *ngIf="hasError" >{{errorContent}}</div>
 </form>

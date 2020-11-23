@@ -14,6 +14,10 @@ export class SignupComponent implements OnInit {
 
   // tslint:disable-next-line:variable-name
   private readonly _form: FormGroup;
+  // tslint:disable-next-line:variable-name
+  private _hasError = false;
+  // tslint:disable-next-line:variable-name
+  private _errorContent;
 
   // tslint:disable-next-line:variable-name
   constructor(private _authService: AuthenticationService, private _router: Router) {
@@ -38,6 +42,14 @@ export class SignupComponent implements OnInit {
       });
   }
 
+  get hasError(): boolean {
+    return this._hasError;
+  }
+
+  get errorContent(): string {
+    return this._errorContent;
+  }
+
   public signup(formValues: any): void {
     if (formValues.username && formValues.password) {
       const user: User = {
@@ -48,6 +60,15 @@ export class SignupComponent implements OnInit {
         .subscribe(
           _ => {
             this._router.navigateByUrl('/');
+          },
+          err => {
+            this._hasError = true;
+            if (err.status === 409){
+              this._errorContent = 'User already exists';
+              console.log(err);
+            }else{
+              this._errorContent = err.status + ' : ' + err.message;
+            }
           }
         );
     }
