@@ -18,6 +18,11 @@ import {AuthenticationService} from '../shared/services/authentication.service';
 export class VideoGameDetailsComponent implements OnInit {
 
   // tslint:disable-next-line:variable-name
+  private _hasError = false;
+  // tslint:disable-next-line:variable-name
+  private _errorContent: string;
+
+  // tslint:disable-next-line:variable-name
   private _game: Game;
 
   // tslint:disable-next-line:variable-name
@@ -39,6 +44,14 @@ export class VideoGameDetailsComponent implements OnInit {
       this._vgService.fetchOne(id).subscribe((game: Game) => this._game = game);
     });
     this._authService.refreshSessionStatus();
+  }
+
+  get hasError(): boolean {
+    return this._hasError;
+  }
+
+  get errorContent(): string {
+    return this._errorContent;
   }
 
   public get game(): Game {
@@ -80,6 +93,7 @@ export class VideoGameDetailsComponent implements OnInit {
   }
 
   private _openEditDialog(game: Game): void {
+    this._hasError = false;
     this._gamesDialog = this._dialog.open(GameDialogComponent, {
       width: '500px',
       height: '670px',
@@ -98,7 +112,16 @@ export class VideoGameDetailsComponent implements OnInit {
       )
       .subscribe((editedGame: Game) => {
         this._game = editedGame;
-      });
+      },
+        err => {
+          this._hasError = true;
+          if (err.status === 409){
+            this._errorContent = 'The game already exists';
+            console.log(err);
+          }else{
+            this._errorContent = err.status + ' : ' + err.message;
+          }
+        });
   }
 
 }

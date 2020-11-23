@@ -264,7 +264,7 @@ export class VideoGameListComponent implements OnInit {
         err => {
           this._hasError = true;
           if (err.status === 409){
-            this._errorContent = 'The name of the game already exists';
+            this._errorContent = 'The game already exists';
             console.log(err);
           }else{
             this._errorContent = err.status + ' : ' + err.message;
@@ -299,6 +299,7 @@ export class VideoGameListComponent implements OnInit {
   }
 
   public showEditDialog(game: Game): void {
+    this._hasError = false;
     this._gamesDialog = this._dialog.open(GameDialogComponent, {
       width: '500px',
       height: '670px',
@@ -322,7 +323,16 @@ export class VideoGameListComponent implements OnInit {
           this._filteredGames = games;
           this.updateDisplayedPages();
         });
-      });
+      },
+        err => {
+          this._hasError = true;
+          if (err.status === 409){
+            this._errorContent = 'The game already exists';
+            console.log(err);
+          }else{
+            this._errorContent = err.status + ' : ' + err.message;
+          }
+        });
   }
 
   private _add(game: Game): Observable<Game[]> {
