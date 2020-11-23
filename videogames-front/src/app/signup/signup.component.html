@@ -1,27 +1,29 @@
-<form [formGroup]="form">
-  <fieldset>
-    <legend>Subscribe</legend>
-    <div class="form-field">
-      <label>Username:</label>
-      <input matInput name="username" formControlName="username">
-    </div>
-    <div class="form-field">
-      <label>Password:</label>
-      <input matInput name="password" formControlName="password"
+<div *ngIf="hasError" >{{errorContent}}</div>
+<section class="form">
+  <form [formGroup]="form">
+    <fieldset>
+      <legend>Subscribe</legend>
+      <div class="form-field">
+        <label>Username:</label>
+        <input matInput name="username" formControlName="username">
+      </div>
+      <div class="form-field">
+        <label>Password:</label>
+        <input matInput name="password" formControlName="password"
              type="password">
-    </div>
-    <div class="form-field">
-      <label>Confirm Password:</label>
-      <input matInput name="cpassword" formControlName="cpassword"
+      </div>
+      <div class="form-field">
+        <label>Confirm Password:</label>
+        <input matInput name="cpassword" formControlName="cpassword"
              type="password">
-      <mat-error *ngIf="form.get('cpassword').dirty && form.hasError('notSame')">
-        Passwords must match
-      </mat-error>
+        <mat-error *ngIf="form.get('cpassword').dirty && form.hasError('notSame')">
+          Passwords must match
+        </mat-error>
+      </div>
+    </fieldset>
+    <div class="form-buttons">
+      <button class="button button-primary"
+              (click)="signup(form.value)">Signup</button>
     </div>
-  </fieldset>
-  <div class="form-buttons">
-    <button class="button button-primary"
-            (click)="signup(form.value)">Signup</button>
-  </div>
-  <div *ngIf="hasError" >{{errorContent}}</div>
-</form>
+  </form>
+</section>

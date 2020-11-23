@@ -1,44 +1,30 @@
-<form [formGroup]="form">
-  <!--<fieldset>
-    <legend>Login</legend>
+<div *ngIf="hasError" >{{errorContent}}</div>
+<section class="form">
+  <form [formGroup]="form" >
     <div class="form-field">
-      <label>Username:</label>
-      <input name="username" formControlName="username">
+      <mat-form-field appearance="outline" class="full-width" [class.mgb15]="form.get('username').dirty && form.get('username').invalid">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" formControlName="username" required name="username" />
+        <mat-error *ngIf="form.get('username').dirty && form.get('username').hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
     </div>
     <div class="form-field">
-      <label>Password:</label>
-      <input name="password" formControlName="password"
-             type="password">
+      <mat-form-field appearance="outline" class="full-width" [class.mgb15]="form.get('password').dirty && form.get('password').invalid">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" required name="password" [type]="hide ? 'password' : 'text'" />
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('password').dirty && form.get('password').hasError('required')">
+          Password is required
+        </mat-error>
+      </mat-form-field>
     </div>
-  </fieldset>
-  <div class="form-buttons">
-    <button class="button button-primary"
-            (click)="login(form.value)">Login</button>
-  </div>-->
-  <div class="form-field">
-    <mat-form-field appearance="outline" class="full-width" [class.mgb15]="form.get('username').dirty && form.get('username').invalid">
-      <mat-label>Username</mat-label>
-      <input matInput placeholder="Username" formControlName="username" required name="username" />
-      <mat-error *ngIf="form.get('username').dirty && form.get('username').hasError('required')">
-        Username is required
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <div class="form-field">
-    <mat-form-field appearance="outline" class="full-width" [class.mgb15]="form.get('password').dirty && form.get('password').invalid">
-      <mat-label>Password</mat-label>
-      <input matInput placeholder="Password" formControlName="password" required name="password" [type]="hide ? 'password' : 'text'" />
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-      <mat-error *ngIf="form.get('password').dirty && form.get('password').hasError('required')">
-        Password is required
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <div class="form-buttons">
-    <button class="button button-primary"
-            (click)="login(form.value)">Login</button>
-  </div>
-  <div *ngIf="hasError" >{{errorContent}}</div>
-</form>
+    <div class="form-buttons">
+      <button mat-button class="button button-primary"
+              (click)="login(form.value)">Login</button>
+    </div>
+  </form>
+</section>
