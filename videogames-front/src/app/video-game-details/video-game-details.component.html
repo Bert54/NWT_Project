@@ -15,6 +15,7 @@
         <p>{{ game.description }}</p>
       </mat-card-content>
     </mat-card>
+    <div *ngIf="hasError" >{{errorContent}}</div>
   </section>
   <section class="came-card-controls">
     <button class="card-return" mat-raised-button (click)="returnToGameList()">
