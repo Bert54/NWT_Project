@@ -1,5 +1,6 @@
-<section *ngIf="!isLoggedIn">
+<section *ngIf="!isLoggedIn" class="logged-out-container">
   <p>You are not logged in.</p>
+  <p>Click <a [routerLink]="['/login']">here</a> to log in. If you don't have an account, click <a [routerLink]="['/signup']">here</a> to create one.</p>
 </section>
 
 <section *ngIf="isLoggedIn">

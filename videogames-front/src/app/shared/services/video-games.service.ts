@@ -1,9 +1,11 @@
+/* tslint:disable:variable-name */
 import { Injectable } from '@angular/core';
 import { Game } from '../interfaces/Game';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
 import {defaultIfEmpty, filter, map} from 'rxjs/operators';
+import {HttpRequestsService} from './http-requests.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,53 +13,27 @@ import {defaultIfEmpty, filter, map} from 'rxjs/operators';
 
 export class VideoGamesService {
 
-  // tslint:disable-next-line:variable-name
-  private readonly _backendURL: any;
-  // tslint:disable-next-line:variable-name
-  private _games: Game[];
-
-  // tslint:disable-next-line:variable-name
-  constructor(private _http: HttpClient) {
-
-    this._backendURL = {};
-
-
-    let baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
-    if (environment.backend.port) {
-      baseUrl += `:${environment.backend.port}`;
-    }
-    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
+  constructor(private _http: HttpRequestsService) {
   }
 
   fetch(): Observable<Game[]> {
-    return this._http.get<Game[]>(this._backendURL.allGames)
-      .pipe(
-        filter(_ => !!_),
-        defaultIfEmpty([])
-      );
+    return this._http.fetch();
   }
 
   fetchOne(id: string): Observable<Game> {
-    return this._http.get<Game>(this._backendURL.singleGame.replace(':id', id));
+    return this._http.fetchOne(id);
   }
 
   create(game: Game): Observable<any> {
-    return this._http.post<Game>(this._backendURL.allGames, game, this._options());
+    return this._http.create(game);
   }
 
   delete(id: string): Observable<string> {
-    return this._http.delete<void>(this._backendURL.singleGame.replace(':id', id))
-      .pipe(
-        map(_ => id)
-      );
+    return this._http.delete(id);
   }
 
   update(id: string, game: Game): Observable<any> {
-    return this._http.put<Game>(this._backendURL.singleGame.replace(':id', id), game, this._options());
-  }
-
-  private _options(headerList: object = {}): any {
-    return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
+    return this._http.update(id, game);
   }
 
 }
