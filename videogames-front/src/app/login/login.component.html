@@ -23,7 +23,7 @@
       </mat-form-field>
     </p>
     <p class="form-buttons">
-      <button mat-button class="button-submit" (click)="login(form.value)">
+      <button mat-button class="button-submit" [disabled]="form.invalid" (click)="login(form.value)">
         Login
         <mat-icon>login</mat-icon>
       </button>
