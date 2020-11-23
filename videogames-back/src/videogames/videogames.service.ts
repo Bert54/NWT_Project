@@ -5,6 +5,7 @@ import { Game } from './interfaces/game.interface';
 import { GameEntity } from './entities/game.entity.js';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { GameDto } from './dto/game.dto';
+import { GameOwnerDto } from './dto/game-owner.dto';
 
 @Injectable()
 export class VideogamesService {
@@ -13,15 +14,15 @@ export class VideogamesService {
 
   }
 
-  findAll(): Observable<GameEntity[] | void> {
-    return this._gamesDao.findAll()
+  findAll(username: string): Observable<GameEntity[] | void> {
+    return this._gamesDao.findAll(username)
       .pipe(
         map(_ => !!_ ? _.map(__ => new GameEntity(__)) : undefined),
       );
   }
 
-  findOne(id: string): Observable<GameEntity> {
-    return this._gamesDao.findById(id)
+  findOne(username: string, id: string): Observable<GameEntity> {
+    return this._gamesDao.findById(username, id)
       .pipe(
         catchError(e => throwError(new UnprocessableEntityException(e.message))),
         mergeMap(_ =>
@@ -31,8 +32,8 @@ export class VideogamesService {
     );
   }
 
-  create(game: GameDto): Observable<GameEntity> {
-    return of(game)
+  create(username: string, game: GameDto): Observable<GameEntity> {
+    return of(this._addUserNameToGame(username, game))
       .pipe(
         mergeMap(_ => this._gamesDao.save(_)),
         catchError(e =>
@@ -46,8 +47,8 @@ export class VideogamesService {
       );
   }
 
-  delete(id: string): Observable<void> {
-    return this._gamesDao.findByIdAndRemove(id)
+  delete(username: string, id: string): Observable<void> {
+    return this._gamesDao.findByIdAndRemove(username, id)
       .pipe(
         catchError(e => throwError(new NotFoundException(e.message))),
         mergeMap(_ =>
@@ -74,6 +75,17 @@ export class VideogamesService {
             throwError(new NotFoundException(`Game with id '${id}' not found`)),
         ),
       );
+  }
+
+  private _addUserNameToGame(username: string, game: GameDto): GameOwnerDto {
+    return {
+      name: game.name,
+      cover: game.cover,
+      genre: game.genre,
+      platform: game.platform,
+      description: game.description,
+      username: username
+    }
   }
 
 }

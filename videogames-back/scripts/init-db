@@ -1,44 +1,60 @@
+// mongodb init
+
 use vg;
 
-var GamesInsertedIds = db.getCollection('Games').insertMany([{
-     "name": "Far Cry 5",
-     "cover": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/H/56261_1535284972.jpg",
-     "genre": "FPS",
-     "platform": "PC",
-     "description": "Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft Montreal and Ubisoft Toronto and published by Ubisoft. It is the fifth main installment in the Far Cry series. The game takes place in Hope County, a fictional region of Montana, United States. The main story revolves around the Project at Eden\'s Gate, a doomsday cult that has taken over the county at the command of its charismatic and powerful leader, Joseph Seed."
-}, {
-     "name": "Pokémon Sword",
-     "cover": "https://s2.gaming-cdn.com/images/products/4075/orig/pokemon-sword-switch-cover.jpg",
-     "genre": "RPG",
-     "platform": "Switch",
-     "description": "Pokémon Sword is a 2019 role-playing video games developed by Game Freak and published by The Pokémon Company and Nintendo for the Nintendo Switch. Like previous installments, they chronicle the journey of a young Pokémon trainer aiming to become the Pokémon Champion, this time in the new Galar region, which is based on the United Kingdom. The main objective of the games is to dethrone the Pokémon League Champion, Leon, in a tournament that various other Gym Leaders and rivals also take part in, whilst dealing with Team Yell and a nefarious conspiracy within the League. Sword and Shield introduce 81 new Pokémon alongside 13 regional variants of pre-existing Pokémon; Dynamaxing, which increases the size of Pokémon under certain conditions; Gigantamaxing, which additionally changes the form of certain Pokémon; and the Wild Area, which is a large, open-world area with free camera movement that contains co-op raid battles. The two games also reintroduce features previously seen in Sun and Moon and Let\'s Go, Pikachu! and Let\'s Go, Eevee!, such as regional variants and roaming Pokémon depicted in the overworld."
-}, {
-     "name": "The Legend of Zelda: Majora's Mask",
-     "cover": "https://upload.wikimedia.org/wikipedia/en/6/60/The_Legend_of_Zelda_-_Majora%27s_Mask_Box_Art.jpg",
-     "genre": "Action-adventure",
-     "platform": "N64",
-     "description": "The Legend of Zelda: Majora's Mask is an action-adventure game developed and published by Nintendo for the Nintendo 64. It was released in 2000 as the sixth main installment in The Legend of Zelda series and was the second to use 3D graphics, following 1998's The Legend of Zelda: Ocarina of Time, to which it is a direct sequel. Majora's Mask is set in Termina, an alternate reality to Ocarina of Time's Hyrule, which is going to be destroyed along with its inhabitants in three days by a giant falling moon unless the player, as Link, can save it from destruction. The plot's antagonist is a mischievous imp called the Skull Kid who has stolen a powerful, ancient artifact called Majora's Mask from an enigmatic traveling mask salesman. The game introduced several novel concepts, revolving around the perpetually repeating three-day cycle and the use of various masks that can transform Link into different beings."
-}, {
-     "name": "Uncharted 3: Drake's Deception",
-     "cover": "https://images-na.ssl-images-amazon.com/images/I/71M7uy1z4AL._AC_SL1000_.jpg",
-     "genre": "Action-adventure",
-     "platform": "PS3",
-     "description": "Uncharted 3: Drake's Deception is a 2011 action-adventure game developed by Naughty Dog and published by Sony Computer Entertainment. It is the third game in the Uncharted series, and was released in November 2011 for the PlayStation 3. Fortune hunter Nathan Drake is catapulted headlong into an adventure that takes him on a daring trek into the heart of the Arabian Desert in a search for the fabled \"Atlantis of the Sands.\" This journey pits him and his mentor Victor Sullivan against the occult treachery of a shadowy clandestine organization and its ruthless leader. When the terrible secrets of this lost city are unearthed, Drake's quest descends into a desperate bid for survival that strains the limits of his endurance and forces him to confront his deepest fears."
-}, {
-     "name": "Shantae and the Seven Sirens",
-     "cover": "https://images.vfl.ru/ii/1590681244/6fb9847c/30650427.png",
-     "genre": "Platform",
-     "platform": "Switch",
-     "description": "Shantae and the Seven Sirens is a platform game developed by WayForward. It is the fifth game in the Shantae series, following Shantae: Half-Genie Hero. The game was released for iOS in September 2019, macOS in October 2019, with Microsoft Windows, Nintendo Switch, PlayStation 4, and Xbox One versions released on May 28, 2020. The half-genie Shantae and her friends are invited to Paradise Island for the Half-Genie Festival, where she meets and befriends a group of fellow half-genies. However, during a performance at the festival, the other half-genies are kidnapped. Determined to uncover the reason for their disappearance, Shantae begins exploring the Sunken City beneath the island in search of the other half-genies. Along the way, she encounters her longtime arch-nemesis Risky Boots, who seeks a mysterious treasure said to reside beneath the island, and battles the half-genies' captors and rulers of the island, the Seven Sirens."
-}, {
-     "name": "Enter the Gungeon",
-     "cover": "https://s1.gaming-cdn.com/images/products/1389/orig/enter-the-gungeon-cover.jpg",
-     "genre": "Roguelike",
-     "platform": "PC",
-     "description": "Enter the Gungeon is a bullet hell roguelike video game developed by Dodge Roll and published by Devolver Digital. The game was released worldwide for Microsoft Windows, OS X, Linux, and PlayStation 4 on April 5, 2016, on Xbox One on April 5, 2017, as well as on Nintendo Switch on December 14, 2017. Enter the Gungeon is set in the Gungeon, an eldritch dungeon on a distant planet named Gunymede, inhabited by living bullets and other strange gun-related lifeforms. At an unspecified point in the past, a giant bullet from the sky destroyed a fortress, and its resulting magic created a weapon of legendary proportions: The Gun That Can Kill The Past.[17] The fortress was rebuilt with the highest of security measures to guard the gun, and adventurers known as \"gungeoneers\" hailed from places over the galaxy to claim their chance at changing their past. The player can play as eight gungeoneers, each with their own stories and regrets, as they decide to enter the fortress and descend into the Gungeon to seek the legendary gun in order to defeat their past."
-}
-]).insertedIds;
-
-db.getCollection('Games').createIndex({ name: 1, platform: 1 }, { unique: true });
-
 db.getCollection('Users').createIndex({ "username": 1 }, { unique: true });
+
+db.getCollection('Games').createIndex({ name: 1, platform: 1, username: 1 }, { unique: true });
+
+
+// data
+
+db.getCollection('Users').insertOne({
+    "username": "User",
+    "password": "$2a$10$tTrxYVCoYrcezjqRkQoufu6Gv/e8D7kCGVRMxfqgWsUpQbSrP9qr6"
+});
+
+db.getCollection('Games').insertMany([{
+    "name": "Far Cry 5",
+    "cover": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/H/56261_1535284972.jpg",
+    "genre": "FPS",
+    "platform": "PC",
+    "description": "Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft Montreal and Ubisoft Toronto and published by Ubisoft. It is the fifth main installment in the Far Cry series. The game takes place in Hope County, a fictional region of Montana, United States. The main story revolves around the Project at Eden\'s Gate, a doomsday cult that has taken over the county at the command of its charismatic and powerful leader, Joseph Seed.",
+    "username": "User"
+}, {
+    "name": "Pokémon Sword",
+    "cover": "https://s2.gaming-cdn.com/images/products/4075/orig/pokemon-sword-switch-cover.jpg",
+    "genre": "RPG",
+    "platform": "Switch",
+    "description": "Pokémon Sword is a 2019 role-playing video games developed by Game Freak and published by The Pokémon Company and Nintendo for the Nintendo Switch. Like previous installments, they chronicle the journey of a young Pokémon trainer aiming to become the Pokémon Champion, this time in the new Galar region, which is based on the United Kingdom. The main objective of the games is to dethrone the Pokémon League Champion, Leon, in a tournament that various other Gym Leaders and rivals also take part in, whilst dealing with Team Yell and a nefarious conspiracy within the League. Sword and Shield introduce 81 new Pokémon alongside 13 regional variants of pre-existing Pokémon; Dynamaxing, which increases the size of Pokémon under certain conditions; Gigantamaxing, which additionally changes the form of certain Pokémon; and the Wild Area, which is a large, open-world area with free camera movement that contains co-op raid battles. The two games also reintroduce features previously seen in Sun and Moon and Let\'s Go, Pikachu! and Let\'s Go, Eevee!, such as regional variants and roaming Pokémon depicted in the overworld.",
+    "username": "User"
+}, {
+    "name": "The Legend of Zelda: Majora's Mask",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/6/60/The_Legend_of_Zelda_-_Majora%27s_Mask_Box_Art.jpg",
+    "genre": "Action-adventure",
+    "platform": "N64",
+    "description": "The Legend of Zelda: Majora's Mask is an action-adventure game developed and published by Nintendo for the Nintendo 64. It was released in 2000 as the sixth main installment in The Legend of Zelda series and was the second to use 3D graphics, following 1998's The Legend of Zelda: Ocarina of Time, to which it is a direct sequel. Majora's Mask is set in Termina, an alternate reality to Ocarina of Time's Hyrule, which is going to be destroyed along with its inhabitants in three days by a giant falling moon unless the player, as Link, can save it from destruction. The plot's antagonist is a mischievous imp called the Skull Kid who has stolen a powerful, ancient artifact called Majora's Mask from an enigmatic traveling mask salesman. The game introduced several novel concepts, revolving around the perpetually repeating three-day cycle and the use of various masks that can transform Link into different beings.",
+    "username": "User"
+}, {
+    "name": "Uncharted 3: Drake's Deception",
+    "cover": "https://images-na.ssl-images-amazon.com/images/I/71M7uy1z4AL._AC_SL1000_.jpg",
+    "genre": "Action-adventure",
+    "platform": "PS3",
+    "description": "Uncharted 3: Drake's Deception is a 2011 action-adventure game developed by Naughty Dog and published by Sony Computer Entertainment. It is the third game in the Uncharted series, and was released in November 2011 for the PlayStation 3. Fortune hunter Nathan Drake is catapulted headlong into an adventure that takes him on a daring trek into the heart of the Arabian Desert in a search for the fabled \"Atlantis of the Sands.\" This journey pits him and his mentor Victor Sullivan against the occult treachery of a shadowy clandestine organization and its ruthless leader. When the terrible secrets of this lost city are unearthed, Drake's quest descends into a desperate bid for survival that strains the limits of his endurance and forces him to confront his deepest fears.",
+    "username": "User"
+}, {
+    "name": "Shantae and the Seven Sirens",
+    "cover": "https://images.vfl.ru/ii/1590681244/6fb9847c/30650427.png",
+    "genre": "Platform",
+    "platform": "Switch",
+    "description": "Shantae and the Seven Sirens is a platform game developed by WayForward. It is the fifth game in the Shantae series, following Shantae: Half-Genie Hero. The game was released for iOS in September 2019, macOS in October 2019, with Microsoft Windows, Nintendo Switch, PlayStation 4, and Xbox One versions released on May 28, 2020. The half-genie Shantae and her friends are invited to Paradise Island for the Half-Genie Festival, where she meets and befriends a group of fellow half-genies. However, during a performance at the festival, the other half-genies are kidnapped. Determined to uncover the reason for their disappearance, Shantae begins exploring the Sunken City beneath the island in search of the other half-genies. Along the way, she encounters her longtime arch-nemesis Risky Boots, who seeks a mysterious treasure said to reside beneath the island, and battles the half-genies' captors and rulers of the island, the Seven Sirens.",
+    "username": "User"
+}, {
+    "name": "Enter the Gungeon",
+    "cover": "https://s1.gaming-cdn.com/images/products/1389/orig/enter-the-gungeon-cover.jpg",
+    "genre": "Roguelike",
+    "platform": "PC",
+    "description": "Enter the Gungeon is a bullet hell roguelike video game developed by Dodge Roll and published by Devolver Digital. The game was released worldwide for Microsoft Windows, OS X, Linux, and PlayStation 4 on April 5, 2016, on Xbox One on April 5, 2017, as well as on Nintendo Switch on December 14, 2017. Enter the Gungeon is set in the Gungeon, an eldritch dungeon on a distant planet named Gunymede, inhabited by living bullets and other strange gun-related lifeforms. At an unspecified point in the past, a giant bullet from the sky destroyed a fortress, and its resulting magic created a weapon of legendary proportions: The Gun That Can Kill The Past.[17] The fortress was rebuilt with the highest of security measures to guard the gun, and adventurers known as \"gungeoneers\" hailed from places over the galaxy to claim their chance at changing their past. The player can play as eight gungeoneers, each with their own stories and regrets, as they decide to enter the fortress and descend into the Gungeon to seek the legendary gun in order to defeat their past.",
+    "username": "User"
+}
+]);

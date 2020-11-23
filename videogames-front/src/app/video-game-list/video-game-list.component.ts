@@ -1,3 +1,4 @@
+/* tslint:disable:variable-name */
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../shared/interfaces/Game';
 import { VideoGamesService } from '../shared/services/video-games.service';
@@ -19,42 +20,29 @@ import { AuthenticationService } from '../shared/services/authentication.service
 })
 export class VideoGameListComponent implements OnInit {
 
-  // tslint:disable-next-line:variable-name
   _actionbuttonHover: boolean;
 
-  // tslint:disable-next-line:variable-name
   _pageSize: any;
-  // tslint:disable-next-line:variable-name
   _currentPage: any;
-  // tslint:disable-next-line:variable-name
   _pageEvent: PageEvent;
-  // tslint:disable-next-line:variable-name
   private _displayButtons: boolean[];
-  // tslint:disable-next-line:variable-name
   private _games: Game[];
-  // tslint:disable-next-line:variable-name
   private _filteredGames: Game[];
-  // tslint:disable-next-line:variable-name
   private _displayedGames: Game[];
-  // tslint:disable-next-line:variable-name
   private _isSearchMenuShown;
-  // tslint:disable-next-line:variable-name
   _searchNameValue: any;
-  // tslint:disable-next-line:variable-name
   _searchGenreValue: any;
-  // tslint:disable-next-line:variable-name
   _searchPlatformValue: any;
 
-  // tslint:disable-next-line:variable-name
   private _gamesDialog: MatDialogRef<GameDialogComponent>;
 
-  // tslint:disable-next-line:variable-name
   private _confirmDialog: MatDialogRef<DeleteDialogComponent>;
 
-  // tslint:disable-next-line:variable-name
   private _gameListElementDisabledRipple: boolean;
 
-  // tslint:disable-next-line:variable-name
+  private _isLoggedIn: boolean;
+
+  // tslint:disable-next-line:max-line-length
   constructor(private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog, private _authService: AuthenticationService) {
     this._games = [];
     this._filteredGames = [];
@@ -124,6 +112,10 @@ export class VideoGameListComponent implements OnInit {
 
   get gameListElementEnabledRipple(): boolean {
     return this._gameListElementDisabledRipple;
+  }
+
+  get isLoggedIn(): boolean {
+    return this._authService.isLoggedInStatus;
   }
 
   setSearchNameValue(newValue: string): void {

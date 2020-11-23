@@ -27,6 +27,8 @@ export class GameEntity {
   @Type(() => String)
   description: string;
 
+  username: string;
+
 
   constructor(partial: Partial<GameEntity>) {
     Object.assign(this, partial);

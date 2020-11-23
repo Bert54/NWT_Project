@@ -7,4 +7,5 @@ export interface Game extends Document {
   genre: string;
   platform: string;
   description: string;
+  username: string;
 }

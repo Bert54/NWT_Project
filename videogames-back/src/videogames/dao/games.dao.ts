@@ -5,35 +5,36 @@ import { Game } from '../interfaces/game.interface';
 import { from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GameDto } from '../dto/game.dto';
+import { GameOwnerDto } from '../dto/game-owner.dto';
 
 @Injectable()
 export class GamesDao {
 
   constructor(@InjectModel('Games') private readonly _gameModel: Model<Game>) {}
 
-  findAll(): Observable<Game[] | void> {
-    return from(this._gameModel.find({}))
+  findAll(username: string): Observable<Game[] | void> {
+    return from(this._gameModel.find({ username: username }))
       .pipe(
         map((docs: MongooseDocument[]) => (!!docs && docs.length > 0) ? docs.map(_ => _.toJSON()) : undefined),
       );
   }
 
-  findById(id: string): Observable<Game | void> {
-    return from(this._gameModel.findById(id))
+  findById(username: string, id: string): Observable<Game | void> {
+    return from(this._gameModel.findOne({ _id: id, username: username }))
       .pipe(
         map((doc: MongooseDocument) => !!doc ? doc.toJSON() : undefined),
       );
   }
 
-  save(game: GameDto): Observable<Game> {
+  save(game: GameOwnerDto): Observable<Game> {
     return from(new this._gameModel(game).save())
       .pipe(
         map((doc: MongooseDocument) => doc.toJSON()),
       );
   }
 
-  findByIdAndRemove(id: string): Observable<Game | void> {
-    return from(this._gameModel.findByIdAndRemove(id))
+  findByIdAndRemove(username: string, id: string): Observable<Game | void> {
+    return from(this._gameModel.findOneAndRemove({ _id: id, username: username }))
       .pipe(
         map((doc: MongooseDocument) => !!doc ? doc.toJSON() : undefined),
       );

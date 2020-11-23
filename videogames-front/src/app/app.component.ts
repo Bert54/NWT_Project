@@ -1,7 +1,9 @@
+/* tslint:disable:variable-name */
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import {AuthenticationService} from './shared/services/authentication.service';
+import { AuthenticationService } from './shared/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +14,8 @@ export class AppComponent implements OnInit {
 
   title = 'front';
 
-  // tslint:disable-next-line:variable-name
-  constructor(private _matIconRegistry: MatIconRegistry, private _domSanitizer: DomSanitizer, private _authService: AuthenticationService) {
+  constructor(private _matIconRegistry: MatIconRegistry, private _domSanitizer: DomSanitizer, private _authService: AuthenticationService,
+              private _router: Router) {
   }
 
   ngOnInit(): void {

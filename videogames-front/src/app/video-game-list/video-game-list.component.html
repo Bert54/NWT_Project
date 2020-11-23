@@ -1,3 +1,8 @@
+<section *ngIf="!isLoggedIn">
+  <p>You are not logged in.</p>
+</section>
+
+<section *ngIf="isLoggedIn">
 <div class="game-list-container">
   <div class="game-menu">
     <mat-expansion-panel style="background-color:#e6f2ff" >
@@ -110,3 +115,4 @@
     </div>
   </div>
 </div>
+</section>

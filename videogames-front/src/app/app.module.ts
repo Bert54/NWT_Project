@@ -27,6 +27,7 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
 import { LoginComponent } from './login/login.component';
 import {AuthInterceptor} from './shared/interceptors/auth.interceptor';
 import { SignupComponent } from './signup/signup.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SignupComponent } from './signup/signup.component';
     DeleteDialogComponent,
     LoginComponent,
     SignupComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

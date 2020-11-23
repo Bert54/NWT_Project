@@ -25,6 +25,11 @@ export const GameSchema = new mongoose.Schema({
     type: String,
     required: false,
     trim: true,
+  },
+  username: {
+    type: String,
+    required: true,
+    trim: true,
   }
 },  {
   toJSON: { virtuals: true },

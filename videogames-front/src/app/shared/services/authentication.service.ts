@@ -1,3 +1,4 @@
+/* tslint:disable:variable-name */
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -14,15 +15,11 @@ import {Game} from '../interfaces/Game';
 })
 export class AuthenticationService {
 
-  // tslint:disable-next-line:variable-name
   private _isLoggedIn: boolean;
-  // tslint:disable-next-line:variable-name
   private _userName: string;
 
-  // tslint:disable-next-line:variable-name
   private readonly _backendURL: any;
 
-  // tslint:disable-next-line:variable-name
   constructor(private _http: HttpClient) {
     this._backendURL = {};
     let baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
@@ -33,7 +30,6 @@ export class AuthenticationService {
     this._userName = 'NOT_LOGGED_IN';
   }
 
-  // tslint:disable-next-line:typedef
   public login(user: User): Observable<any> {
     return this._http.post(this._backendURL.login, user, this._options()).pipe(
       tap(res => {
