@@ -1,6 +1,17 @@
-<div class="head">
-  <h1>TrackMyGames</h1>
-  <h2>Keep track of games in your possession with ease</h2>
-</div>
+<section class="top">
+  <div [routerLink]="['/games']" class="head">
+    <h1>TrackMyGames</h1>
+    <h2>Keep track of games in your possession with ease</h2>
+  </div>
+  <span class="user-space" *ngIf="isLoggedIn">
+    <p class="loggin-info">You are logged in as {{ userName }}</p>
+    <button mat-button (click)="logOut()">Logout</button>
+  </span>
+  <span class="user-space" *ngIf="!isLoggedIn">
+    <p class="loggin-info">You are not logged in</p>
+    <button mat-button [routerLink]="['/signup']">Register</button>
+    <button mat-button [routerLink]="['/login']">Login</button>
+  </span>
+</section>
 <router-outlet></router-outlet>
 

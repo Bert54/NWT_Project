@@ -11,6 +11,9 @@ export const environment = {
     endpoints: {
       allGames: '/games',
       singleGame: '/games/:id',
+      usersProfile: '/users/profile',
+      users: '/users',
+      login: '/auth/login'
     }
   }
 };

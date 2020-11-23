@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import {AuthenticationService} from './shared/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   title = 'front';
 
   // tslint:disable-next-line:variable-name
-  constructor(private _matIconRegistry: MatIconRegistry, private _domSanitizer: DomSanitizer) {
+  constructor(private _matIconRegistry: MatIconRegistry, private _domSanitizer: DomSanitizer, private _authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -22,6 +23,19 @@ export class AppComponent implements OnInit {
     this._matIconRegistry.addSvgIcon('icon-search', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/search-24px.svg'));
     this._matIconRegistry.addSvgIcon('icon-game',
       this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/videogame_asset-24px.svg'));
+    this._authService.refreshSessionStatus();
+  }
+
+  get isLoggedIn(): boolean {
+    return this._authService.isLoggedInStatus;
+  }
+
+  get userName(): string {
+    return this._authService.userName;
+  }
+
+  public logOut(): void {
+    this._authService.logout();
   }
 
 }

@@ -3,6 +3,8 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { UserDto } from '../users/dto/user.dto';
+import { fromPromise } from 'rxjs/internal-compatibility';
+import { Observable } from 'rxjs';
 
 @Controller()
 export class AuthController {
@@ -11,8 +13,8 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
-  async login(@Body() user: UserDto) {
-    return this.authService.login(user.username);
+  login(@Body() user: UserDto): Observable<any> {
+    return fromPromise(this.authService.login(user.username));
   }
 
 }

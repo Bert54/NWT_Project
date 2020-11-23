@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   backend: {
     protocol: 'http',
     host: '0.0.0.0',
@@ -7,6 +7,9 @@ export const environment = {
     endpoints: {
       allGames: '/games',
       singleGame: '/games/:id',
+      usersProfile: '/users/profile',
+      users: '/users',
+      login: '/auth/login'
     }
   }
 };

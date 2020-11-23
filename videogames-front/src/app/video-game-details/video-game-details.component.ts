@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from '../shared/interfaces/Game';
-import { VideoGamesService } from '../shared/services/VideoGamesService';
+import { VideoGamesService } from '../shared/services/video-games.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 import { GameDialogComponent } from '../shared/game-dialog/game-dialog.component';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import {DomSanitizer} from '@angular/platform-browser';
+import {AuthenticationService} from '../shared/services/authentication.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -25,7 +27,9 @@ export class VideoGameDetailsComponent implements OnInit {
   private _gamesDialog: MatDialogRef<GameDialogComponent>;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _route: ActivatedRoute, private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog) {
+  constructor(private _route: ActivatedRoute, private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog,
+              // tslint:disable-next-line:variable-name
+              private _authService: AuthenticationService) {
     this._game = {} as Game;
   }
 
@@ -34,6 +38,7 @@ export class VideoGameDetailsComponent implements OnInit {
       const id = params.get('id');
       this._vgService.fetchOne(id).subscribe((game: Game) => this._game = game);
     });
+    this._authService.refreshSessionStatus();
   }
 
   public get game(): Game {

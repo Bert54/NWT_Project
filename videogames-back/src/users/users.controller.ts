@@ -4,7 +4,8 @@ import { UsersService } from './users.service';
 import { AuthService } from '../auth/auth.service';
 import { UserEntity } from './entities/user.entity.js';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { HandlerIdParam } from './validators/handler-username-params';
+import { Observable, of } from 'rxjs';
+import { fromPromise } from 'rxjs/internal-compatibility';
 
 @Controller('users')
 export class UsersController {
@@ -13,14 +14,14 @@ export class UsersController {
   }
 
   @Post()
-  async create(@Body() user: UserDto): Promise<UserEntity> {
-    return this._authService.register(user);
+  create(@Body() user: UserDto): Observable<UserEntity> {
+    return fromPromise(this._authService.register(user));
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async getProfile(@Request() req) {
-    return req.user.username;
+  getProfile(@Request() req): Observable<any> {
+    return of({'username': req.user.username});
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../shared/interfaces/Game';
-import { VideoGamesService } from '../shared/services/VideoGamesService';
+import { VideoGamesService } from '../shared/services/video-games.service';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
@@ -9,7 +9,7 @@ import { GameDialogComponent } from '../shared/game-dialog/game-dialog.component
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
-import {MatRippleModule, RippleGlobalOptions, RippleRef} from '@angular/material/core';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -55,7 +55,7 @@ export class VideoGameListComponent implements OnInit {
   private _gameListElementDisabledRipple: boolean;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog) {
+  constructor(private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog, private _authService: AuthenticationService) {
     this._games = [];
     this._filteredGames = [];
     this._displayedGames = [];
@@ -75,6 +75,7 @@ export class VideoGameListComponent implements OnInit {
       this._filteredGames = games;
       this.updateDisplayedPages();
     });
+    this._authService.refreshSessionStatus();
   }
 
   get games(): Game[] {

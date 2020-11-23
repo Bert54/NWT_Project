@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { VideoGameListComponent } from './video-game-list/video-game-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { VideoGameDetailsComponent } from './video-game-details/video-game-details.component';
@@ -24,6 +24,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { GameFormComponent } from './shared/game-form/game-form.component';
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
+import { LoginComponent } from './login/login.component';
+import {AuthInterceptor} from './shared/interceptors/auth.interceptor';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,8 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
     GameDialogComponent,
     GameFormComponent,
     DeleteDialogComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,7 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
     MatDialogModule,
     MatSelectModule,
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true} ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {
