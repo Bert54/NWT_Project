@@ -23,7 +23,7 @@
       </mat-form-field>
     </div>
     <div class="form-buttons">
-      <button mat-button class="button button-primary"
+      <button mat-button class="button button-primary" [disabled]="form.invalid"
               (click)="login(form.value)">Login</button>
     </div>
   </form>

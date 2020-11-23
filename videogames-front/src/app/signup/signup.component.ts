@@ -18,6 +18,8 @@ export class SignupComponent implements OnInit {
   private _hasError = false;
   // tslint:disable-next-line:variable-name
   private _errorContent;
+  // tslint:disable-next-line:variable-name
+  private _hide = true;
 
   // tslint:disable-next-line:variable-name
   constructor(private _authService: AuthenticationService, private _router: Router) {
@@ -48,6 +50,14 @@ export class SignupComponent implements OnInit {
 
   get errorContent(): string {
     return this._errorContent;
+  }
+
+  get hide(): boolean {
+    return this._hide;
+  }
+
+  set hide(value: boolean) {
+    this._hide = value;
   }
 
   public signup(formValues: any): void {
