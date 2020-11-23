@@ -127,3 +127,22 @@ button.game-item-edit:hover {
   border:1px groove rgba(0,0,0,0.1);
 
 }
+
+.error-container {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  background-color: #ffcccc;
+  color: #ff4444;
+  border: 5px ridge #af3333;
+}
+
+.error-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}

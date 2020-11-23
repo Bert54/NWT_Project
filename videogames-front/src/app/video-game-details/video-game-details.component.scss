@@ -94,3 +94,22 @@ div.card-header {
   width: auto;
   max-width: 400px;
 }
+
+.error-container {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  background-color: #ffcccc;
+  color: #ff4444;
+  border: 5px ridge #af3333;
+}
+
+.error-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}

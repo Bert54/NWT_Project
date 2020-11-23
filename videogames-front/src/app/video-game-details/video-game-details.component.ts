@@ -1,3 +1,4 @@
+/* tslint:disable:variable-name */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from '../shared/interfaces/Game';
@@ -17,23 +18,16 @@ import {AuthenticationService} from '../shared/services/authentication.service';
 })
 export class VideoGameDetailsComponent implements OnInit {
 
-  // tslint:disable-next-line:variable-name
   private _hasError = false;
-  // tslint:disable-next-line:variable-name
   private _errorContent: string;
 
-  // tslint:disable-next-line:variable-name
   private _game: Game;
 
-  // tslint:disable-next-line:variable-name
   private _confirmDialog: MatDialogRef<DeleteDialogComponent>;
 
-  // tslint:disable-next-line:variable-name
   private _gamesDialog: MatDialogRef<GameDialogComponent>;
 
-  // tslint:disable-next-line:variable-name
   constructor(private _route: ActivatedRoute, private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog,
-              // tslint:disable-next-line:variable-name
               private _authService: AuthenticationService) {
     this._game = {} as Game;
   }
@@ -116,7 +110,7 @@ export class VideoGameDetailsComponent implements OnInit {
         err => {
           this._hasError = true;
           if (err.status === 409){
-            this._errorContent = 'The game already exists';
+            this._errorContent = 'You already possess this game';
             console.log(err);
           }else{
             this._errorContent = err.status + ' : ' + err.message;

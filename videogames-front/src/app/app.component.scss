@@ -24,6 +24,9 @@ $ferrum_font: 'Ferrum';
 .loggin-info {
   font-family: $ferrum_font !important;
   font-size: 25px !important;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .head:hover {
@@ -34,6 +37,8 @@ $ferrum_font: 'Ferrum';
   background-color: blue;
   margin-left: 30px;
   margin-right: 30px;
+  border: 3px groove rgba(50,50,230,0.7);
+  border-radius: 8px;
 }
 
 .button-login-signup {
@@ -42,6 +47,8 @@ $ferrum_font: 'Ferrum';
   display: flex;
   align-content: center;
   justify-content: center;
+  border: 3px groove rgba(50,50,230,0.7);
+  border-radius: 8px;
 }
 
 h1, h2 {

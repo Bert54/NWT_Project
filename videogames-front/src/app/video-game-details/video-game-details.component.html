@@ -1,4 +1,10 @@
 <div id="card-container">
+  <section *ngIf="hasError" class="error-container">
+    <p class="error-message">
+      <strong><mat-icon>error_outline</mat-icon></strong>
+      <strong>&nbsp;{{ errorContent }}</strong>
+    </p>
+  </section>
   <section class="came-card-container">
     <mat-card class="game-card">
       <div class="card-header">
@@ -15,7 +21,6 @@
         <p>{{ game.description }}</p>
       </mat-card-content>
     </mat-card>
-    <div *ngIf="hasError" >{{errorContent}}</div>
   </section>
   <section class="came-card-controls">
     <button class="card-return" mat-raised-button (click)="returnToGameList()">

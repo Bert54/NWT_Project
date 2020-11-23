@@ -1,9 +1,11 @@
+/* tslint:disable:variable-name */
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, Validators} from '@angular/forms';
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../shared/interfaces/User';
 import {MatchValidators} from '../shared/validators/MatchValidators';
+import {PasswordsStateMatcher} from '../shared/validators/PasswordsStateMatcher';
 
 @Component({
   selector: 'app-signup',
@@ -12,21 +14,19 @@ import {MatchValidators} from '../shared/validators/MatchValidators';
 })
 export class SignupComponent implements OnInit {
 
-  // tslint:disable-next-line:variable-name
   private readonly _form: FormGroup;
-  // tslint:disable-next-line:variable-name
   private _hasError = false;
-  // tslint:disable-next-line:variable-name
   private _errorContent;
-  // tslint:disable-next-line:variable-name
   private _hide = true;
+  private _hideC = true;
+  public _matcher: PasswordsStateMatcher;
 
-  // tslint:disable-next-line:variable-name
   constructor(private _authService: AuthenticationService, private _router: Router) {
     this._form = this.buildForm();
   }
 
   ngOnInit(): void {
+    this._matcher = new PasswordsStateMatcher();
   }
 
   get form(): FormGroup {
@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
     return new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
-      cpassword: new FormControl('', Validators.required)
+      cpassword: new FormControl('')
     },
       {
         validators: MatchValidators.mustMatch
@@ -59,6 +59,15 @@ export class SignupComponent implements OnInit {
   set hide(value: boolean) {
     this._hide = value;
   }
+
+  get hideC(): boolean {
+    return this._hideC;
+  }
+
+  set hideC(value: boolean) {
+    this._hideC = value;
+  }
+
 
   public signup(formValues: any): void {
     if (formValues.username && formValues.password) {

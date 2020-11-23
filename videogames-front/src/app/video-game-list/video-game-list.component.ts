@@ -33,9 +33,7 @@ export class VideoGameListComponent implements OnInit {
   _searchNameValue: any;
   _searchGenreValue: any;
   _searchPlatformValue: any;
-  // tslint:disable-next-line:variable-name
   private _hasError = false;
-  // tslint:disable-next-line:variable-name
   private _errorContent: string;
 
   private _gamesDialog: MatDialogRef<GameDialogComponent>;
@@ -43,8 +41,6 @@ export class VideoGameListComponent implements OnInit {
   private _confirmDialog: MatDialogRef<DeleteDialogComponent>;
 
   private _gameListElementDisabledRipple: boolean;
-
-  private _isLoggedIn: boolean;
 
   // tslint:disable-next-line:max-line-length
   constructor(private _vgService: VideoGamesService, private _router: Router, private _dialog: MatDialog, private _authService: AuthenticationService) {
@@ -151,6 +147,7 @@ export class VideoGameListComponent implements OnInit {
   }
 
   private updateDisplayedPages(): void {
+    this._hasError = false;
     this._displayedGames = [];
     if ((this._currentPage + 1) * this.pageSize >= this._filteredGames.length) {
       for (let i = this._currentPage * this._pageSize ; i < this._filteredGames.length ; i++) {
@@ -175,16 +172,19 @@ export class VideoGameListComponent implements OnInit {
   }
 
   switchDisplayedGamed(event?: PageEvent): any {
+    this._hasError = false;
     this._currentPage = event.pageIndex;
     this._pageSize = event.pageSize;
     this.updateDisplayedPages();
   }
 
   toggleSearchMenu(): void {
+    this._hasError = false;
     this._isSearchMenuShown = !this._isSearchMenuShown;
   }
 
   filterGames(): void {
+    this._hasError = false;
     this._currentPage = 0;
     this._filteredGames = [];
     // tslint:disable-next-line:prefer-for-of
@@ -214,6 +214,7 @@ export class VideoGameListComponent implements OnInit {
   }
 
   sortGameList(sort: Sort): any {
+    this._hasError = false;
     let sortedData: Game[];
     const data = this._filteredGames.slice();
     if (!sort.active || sort.direction === '') {
@@ -274,6 +275,7 @@ export class VideoGameListComponent implements OnInit {
   }
 
   public openConfirmDialog(id: string): void {
+    this._hasError = false;
     this._confirmDialog = this._dialog.open(DeleteDialogComponent, {
       width: '350px',
       height: '125px',
@@ -327,7 +329,7 @@ export class VideoGameListComponent implements OnInit {
         err => {
           this._hasError = true;
           if (err.status === 409){
-            this._errorContent = 'The game already exists';
+            this._errorContent = 'You already possess this game';
             console.log(err);
           }else{
             this._errorContent = err.status + ' : ' + err.message;

@@ -1,6 +1,6 @@
 <section *ngIf="!isLoggedIn" class="logged-out-container">
   <p>You are not logged in.</p>
-  <p>Click <a [routerLink]="['/login']">here</a> to log in. If you don't have an account, click <a [routerLink]="['/signup']">here</a> to create one.</p>
+  <p><a [routerLink]="['/login']">Click here</a> to log in. If you don't have an account, <a [routerLink]="['/signup']">click here</a> to create one.</p>
 </section>
 
 <section *ngIf="isLoggedIn">
@@ -72,8 +72,13 @@
         </mat-grid-list>
       </p>
     </div>
-    <div class="game-list">
-      <div *ngIf="hasError" >{{errorContent}}</div>
+    <section *ngIf="hasError" class="error-container">
+      <p class="error-message">
+        <strong><mat-icon>error_outline</mat-icon></strong>
+        <strong>&nbsp;{{ errorContent }}</strong>
+      </p>
+    </section>
+      <div class="game-list">
       <mat-list matSort (matSortChange)="sortGameList($event)">
         <mat-list-item class="game-list-header">
           <span id="list-elem-name">

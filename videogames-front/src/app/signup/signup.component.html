@@ -1,8 +1,14 @@
-<div *ngIf="hasError" >{{errorContent}}</div>
+<section *ngIf="hasError" class="error-container">
+  <p class="error-message">
+    <strong><mat-icon>error_outline</mat-icon></strong>
+    <strong>&nbsp;{{ errorContent }}</strong>
+  </p>
+</section>
 <section class="form">
   <form [formGroup]="form">
     <p class="form-field">
       <legend>Register</legend>
+      <mat-divider></mat-divider>
       <mat-form-field appearance="outline" class="full-width" [class.mgb15]="form.get('username').dirty && form.get('username').invalid">
         <mat-label>Username</mat-label>
         <input matInput placeholder="Username" formControlName="username" required name="username" />
@@ -25,10 +31,10 @@
     </p>
     <p class="form-field">
       <mat-form-field appearance="outline" class="full-width" [class.mgb15]="form.get('cpassword').dirty && form.get('cpassword').invalid">
-        <mat-label>Password</mat-label>
-        <input matInput placeholder="Cpassword" formControlName="cpassword" required name="cpassword" [type]="hide ? 'password' : 'text'" />
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-label>Confirm password</mat-label>
+        <input matInput placeholder="Cpassword" formControlName="cpassword" name="cpassword" [errorStateMatcher]="_matcher" [type]="hideC ? 'password' : 'text'" />
+        <button mat-icon-button matSuffix (click)="hideC = !hideC" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideC">
+          <mat-icon>{{hideC ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-error *ngIf="form.get('cpassword').dirty && form.hasError('notSame')">
           Passwords must match
@@ -36,8 +42,12 @@
       </mat-form-field>
     </p>
     <p class="form-buttons">
-      <button mat-button class="button-submit"
-              (click)="signup(form.value)" [disabled]="form.invalid">Signup</button>
+      <button mat-button class="button-submit" (click)="signup(form.value)" [disabled]="form.invalid">
+        Signup
+        <mat-icon>arrow_circle_up</mat-icon>
+      </button>
     </p>
   </form>
+  <mat-divider></mat-divider>
+  <p style="margin-top:10px;text-align: center"><i>Already have an account? <a [routerLink]="['/login']">Click here</a> to log in.</i></p>
 </section>

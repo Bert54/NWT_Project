@@ -1,6 +1,13 @@
-<div *ngIf="hasError" >{{errorContent}}</div>
+<section *ngIf="hasError" class="error-container">
+  <p class="error-message">
+    <strong><mat-icon>error_outline</mat-icon></strong>
+    <strong>&nbsp;{{ errorContent }}</strong>
+  </p>
+</section>
 <section class="form">
   <form [formGroup]="form" >
+    <legend>Log in</legend>
+    <mat-divider></mat-divider>
     <p class="form-field">
       <mat-form-field v appearance="outline" class="full-width" [class.mgb15]="form.get('username').dirty && form.get('username').invalid">
         <mat-label>Username</mat-label>
@@ -29,4 +36,6 @@
       </button>
     </p>
   </form>
+  <mat-divider></mat-divider>
+  <p style="margin-top:10px;text-align: center"><i>Don't have an account? <a [routerLink]="['/signup']">Click here</a> to sign up.</i></p>
 </section>
