@@ -114,7 +114,7 @@ db.getCollection('Games').insertMany([{
     "username": "User"
 }, {
     "name": "Super Smash Bros. Melee",
-    "cover": "https://s2.gaming-cdn.com/images/products/3238/orig/celeste-switch-cover.jpg",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/7/75/Super_Smash_Bros_Melee_box_art.png",
     "genre": "Fighting",
     "platform": "Game Cube",
     "description": "Super Smash Bros. Melee is a 2001 crossover fighting video game developed by HAL Laboratory and published by Nintendo for the GameCube. It is the second installment in the Super Smash Bros. series. It features characters from Nintendo video game franchises such as Mario, The Legend of Zelda, Star Fox, and Pokémon. The stages and gameplay modes reference or take designs from these franchises as well. Like its predecessor, Super Smash Bros. Melee differs from traditional fighting games as the objective is to force their opponents beyond the boundaries of the stage. Most attacks inflict damage and can, if enough damage is dealt, knock back the enemy. Each character's health is measured by a meter that represents damage as a percentage. The higher the percentage value, the farther the player gets knocked back, and the easier they are to knock off the stage, which will result in the character's death and the loss of a stock, or life. Unlike other games of the same genre, in which moves are entered by button-input combinations, most moves in Super Smash Bros. Melee can be accessed via one-button presses and a joystick direction.",

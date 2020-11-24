@@ -6,7 +6,7 @@ A college web project for the New Web Technologies course using Angular 10 in th
 
 ## Prerequisites
 
-* Yarn
+* The package manager Yarn
 * Angular (version 10 preferably)
 * NestJS
 * MongoDB
@@ -34,11 +34,15 @@ $ git checkout prod
 
 ```bash
 # front end (in the 'videogames-front' folder)
+$ yarn install
 $ ng serve
 
 # back end (in the 'videogames-back' folder)
+$ yarn install
 $ yarn run start:dev
 ```
+
+The website will be available at the URL **http://localhost:4200/**
 
 ## Additionnal
 
