@@ -20,12 +20,14 @@ export class SignupComponent implements OnInit {
   private _hide = true;
   private _hideC = true;
   public _matcher: PasswordsStateMatcher;
+  public _registrationSuccess: boolean;
 
   constructor(private _authService: AuthenticationService, private _router: Router) {
     this._form = this.buildForm();
   }
 
   ngOnInit(): void {
+    this._registrationSuccess = false;
     this._matcher = new PasswordsStateMatcher();
   }
 
@@ -68,6 +70,10 @@ export class SignupComponent implements OnInit {
     this._hideC = value;
   }
 
+  get registrationSuccess(): boolean  {
+    return this._registrationSuccess;
+  }
+
 
   public signup(formValues: any): void {
     if (formValues.username && formValues.password) {
@@ -78,14 +84,14 @@ export class SignupComponent implements OnInit {
       this._authService.createUser(user)
         .subscribe(
           _ => {
-            this._router.navigateByUrl('/');
+            this._registrationSuccess = true;
           },
           err => {
             this._hasError = true;
             if (err.status === 409){
               this._errorContent = 'User already exists';
               console.log(err);
-            }else{
+            } else{
               this._errorContent = err.status + ' : ' + err.message;
             }
           }

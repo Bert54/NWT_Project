@@ -1,3 +1,4 @@
+<section *ngIf="!registrationSuccess">
 <section *ngIf="hasError" class="error-container">
   <p class="error-message">
     <strong><mat-icon>error_outline</mat-icon></strong>
@@ -50,4 +51,11 @@
   </form>
   <mat-divider></mat-divider>
   <p style="margin-top:10px;text-align: center"><i>Already have an account? <a [routerLink]="['/login']">Click here</a> to log in.</i></p>
+</section>
+</section>
+<section *ngIf="registrationSuccess">
+  <span class="login-success">
+    <p>Registration success! You may now log in.</p>
+    <a [routerLink]="['/login']">Go to the login page</a>
+  </span>
 </section>

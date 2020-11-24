@@ -85,3 +85,20 @@ mat-form-field {
   padding-left: 4px;
   padding-right: 4px;
 }
+
+.login-success {
+  margin-top: 30px;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  display: flex;
+  position: relative;
+  float: top;
+  flex-direction: column;
+  background-color: #ccffcc;
+  padding-left: 20px;
+  padding-right: 25px;
+  border:  3px ridge rgba(0,255,0,0.7);
+  box-shadow: 0px 6px 5px -3px rgba(0,0,0,0.28);
+}
