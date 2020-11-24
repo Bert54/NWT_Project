@@ -56,5 +56,68 @@ db.getCollection('Games').insertMany([{
     "platform": "PC",
     "description": "Enter the Gungeon is a bullet hell roguelike video game developed by Dodge Roll and published by Devolver Digital. The game was released worldwide for Microsoft Windows, OS X, Linux, and PlayStation 4 on April 5, 2016, on Xbox One on April 5, 2017, as well as on Nintendo Switch on December 14, 2017. Enter the Gungeon is set in the Gungeon, an eldritch dungeon on a distant planet named Gunymede, inhabited by living bullets and other strange gun-related lifeforms. At an unspecified point in the past, a giant bullet from the sky destroyed a fortress, and its resulting magic created a weapon of legendary proportions: The Gun That Can Kill The Past.[17] The fortress was rebuilt with the highest of security measures to guard the gun, and adventurers known as \"gungeoneers\" hailed from places over the galaxy to claim their chance at changing their past. The player can play as eight gungeoneers, each with their own stories and regrets, as they decide to enter the fortress and descend into the Gungeon to seek the legendary gun in order to defeat their past.",
     "username": "User"
+}, {
+    "name": "Evoland",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/3/39/Evoland_Logo.png",
+    "genre": "RPG",
+    "platform": "Android",
+    "description": "Evoland is a 2013 role-playing video game developed by Shiro Games, a French video game development company based in Bordeaux. Evoland was first released for Microsoft Windows and OS X in April 2013, Android and iOS in February 2015 and Linux in March 2015. The design retraces the history of video games. Inspired by The Legend of Zelda, Diablo and Final Fantasy gameplay, the game has many references to movies and video game history. As the player progresses, they unlock new technologies and graphical upgrades that nod towards different eras of the video game industry. The game alternates between action RPG phases similar to The Legend of Zelda and Active-Time Battles like those seen in Final Fantasy. The character moves in a world made up of dungeons, caverns, forests and villages full of NPCs. Players collect the in-game currency Glis after each battle, which can be spent in towns to purchase additional items and upgrades, many of which must be obtained to finish the game. In addition to completing the story mode, players can also attempt to find hidden stars and cards that are scattered around the game world, the latter of which can be used in a collectible card game based on \"Triple Triad\" from Final Fantasy VIII.",
+    "username": "User"
+}, {
+    "name": "Street Fighter V",
+    "cover": "https://static.fnac-static.com/multimedia/Images/FR/NR/50/ff/62/6487888/1540-1/tsp20141223104322/Street-Fighter-V-PS4.jpg",
+    "genre": "Fighting",
+    "platform": "PS4",
+    "description": "Street Fighter V is a fighting game developed by Capcom and Dimps and published by Capcom for the PlayStation 4 and Microsoft Windows in 2016. The game was initially announced for Linux, but this version was never released. Similar to the previous games in the Street Fighter series, Street Fighter V features a side-scrolling fighting gameplay system. The game also introduces the \"V-Gauge\", which builds as the player receives attacks and adds three new skills. The game features 16 characters at launch, with four of them being new to the series. A story mode and additional characters were added through updates and downloadable content. Street Fighter V carries on the 2D fighting gameplay of its predecessors, in which two fighters use a variety of attacks and special abilities to knock out their opponent. The game features the EX gauge introduced in Street Fighter III, which builds as the player lands attacks and can be used to either power up special moves or perform super combos known as Critical Arts, although the Focus Attacks from the previous game have been removed.",
+    "username": "User"
+}, {
+    "name": "Kingdom Come: Deliverance",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/f/fd/Kingdom_Come_Deliverance.jpg",
+    "genre": "RPG",
+    "platform": "PC",
+    "description": "Kingdom Come: Deliverance is a 2018 action role-playing video game developed by Warhorse Studios and published by Deep Silver for Microsoft Windows, PlayStation 4, and Xbox One. It is set in the medieval Kingdom of Bohemia, an Imperial State of the Holy Roman Empire, with a focus on historically accurate content. The story takes place during a war in Bohemia in 1403. On the orders of Hungarian king Sigismund, Cuman mercenaries raid the mining village of Skalitz, a major source of silver. One of the survivors of the resulting massacre is Henry, the son of a blacksmith. Destitute and vengeful, Henry joins the service of Lord Radzig Kobyla, who leads a resistance movement against Sigismund's invasion. As Henry pursues justice for his murdered family, he becomes involved in an effort to restore Bohemia's rightful king and Sigismund's half-brother, Wenceslaus IV, to the throne. The game features branching quest lines, an open world environment, and period-accurate weapons, clothing, combat techniques, and architecture (recreated with the assistance of architects and historians), which encourages immersive gameplay.",
+    "username": "User"
+}, {
+    "name": "Super Mario Odyssey",
+    "cover": "https://images-na.ssl-images-amazon.com/images/I/91JZdTYcjFL._AC_SL1500_.jpg",
+    "genre": "Platform",
+    "platform": "Switch",
+    "description": "Super Mario Odyssey is a platform game developed and published by Nintendo for the Nintendo Switch on October 27, 2017. An entry in the Super Mario series, it follows Mario and Cappy, a sentient hat that allows Mario to control other characters and objects, as they journey across various worlds to save Princess Peach from his nemesis Bowser, who plans to forcibly marry her. In contrast to the linear gameplay of prior entries, the game returns to the primarily open-ended, 3D platform gameplay featured in Super Mario 64 and Super Mario Sunshine.",
+    "username": "User"
+}, {
+    "name": "The Last of Us Part II",
+    "cover": "https://images-na.ssl-images-amazon.com/images/I/81OFTUvFX4L._AC_SL1500_.jpg",
+    "genre": "Action-adventure",
+    "platform": "PS4",
+    "description": "The Last of Us Part II is a 2020 action-adventure game developed by Naughty Dog and published by Sony Interactive Entertainment for the PlayStation 4. Set five years after The Last of Us (2013), the player controls two characters in a post-apocalyptic United States whose lives intertwine: Ellie, who sets out for revenge after suffering a tragedy, and Abby, a soldier who becomes involved in a conflict with a cult. The game is played from the third-person perspective. The player can use firearms, improvised weapons, and stealth to fight human enemies and cannibalistic creatures.",
+    "username": "User"
+}, {
+    "name": "Nier Automata",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/2/21/Nier_Automata_cover_art.jpg",
+    "genre": "RPG",
+    "platform": "Xbox One",
+    "description": "Nier: Automata is a 2017 action role-playing game developed by PlatinumGames and published by Square Enix. It is a sequel to the 2010 video game Nier, itself a spin-off and sequel of the Drakengard series. The game originally released for the PlayStation 4 and Windows via Steam, with an Xbox One port being published the following year with the subtitle Become As Gods Edition. Set during a proxy war between alien-created machines and human-crafted androids, the story follows the trials of a combat android, her companion, and a fugitive prototype. The story requires multiple playthroughs, each unlocking additional story elements. Gameplay combines role-playing elements with action-based hack and slash combat, and features switches between video game genres similar to that of Nier with elements ranging from shoot 'em up to text adventure.",
+    "username": "User"
+}, {
+    "name": "Crusader Kings III",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Crusader_Kings_III.jpg/220px-Crusader_Kings_III.jpg",
+    "genre": "Strategy",
+    "platform": "PC",
+    "description": "Crusader Kings III is a grand strategy game set in the Middle Ages, developed by Paradox Development Studio and published by Paradox Interactive as a sequel to Crusader Kings (2004) and Crusader Kings II (2012). The game was first announced during PDXCon 2019 in October 2019 and was released on 1 September 2020. Like its predecessors, the game is set in the Middle Ages, players can start in either 867 or 1066 and play until 1453. Dynasties can form cadet branches that have their own heads and act mostly independently from their parent dynasty. The heads of dynasties will be able to use a new resource known as Renown to assert their control over their house. For example, the heads of dynasties are responsible for legitimizing bastards.",
+    "username": "User"
+}, {
+    "name": "Celeste",
+    "cover": "https://s2.gaming-cdn.com/images/products/3238/orig/celeste-switch-cover.jpg",
+    "genre": "Platform",
+    "platform": "Switch",
+    "description": "Celeste is a platforming video game by Canadian video game developers Maddy Thorson and Noel Berry, with art by the Brazilian studio MiniBoss.[1] The game was originally created as a prototype in four days during a game jam, and later expanded into a full release. Celeste was released in January 2018 on Microsoft Windows, Nintendo Switch, PlayStation 4, Xbox One, macOS, and Linux, with a 2020 release on Google Stadia. A DLC chapter entitled \"Farewell\" was released on September 9, 2019. Celeste is a platform game in which players control a girl named Madeline as she makes her way up a mountain while avoiding various deadly obstacles. Along with jumping and climbing up walls for a limited amount of time, Madeline has the ability to perform a mid-air dash in the eight cardinal and intercardinal directions. This move can only be performed once and must be replenished by either landing on the ground, hitting certain objects such as replenishing crystals, or moving to a new screen (although the player is granted a second dash later on in the game). Combining dashes with movement in various ways can be used by the player to gain more speed than usual or access areas before they are supposed to. Some of these advanced movement mechanics are shown to the player as they progress the late stages of the game. Examples include the superdash, hyperdash, ultradash and an unintended feature, the demodash. Throughout each level, the player will encounter additional mechanics, such as springs that launch the player or feathers that allow brief flight, and deadly objects such as spikes which kill Madeline (returning her to the start of the room).",
+    "username": "User"
+}, {
+    "name": "Super Smash Bros. Melee",
+    "cover": "https://s2.gaming-cdn.com/images/products/3238/orig/celeste-switch-cover.jpg",
+    "genre": "Fighting",
+    "platform": "Game Cube",
+    "description": "Super Smash Bros. Melee is a 2001 crossover fighting video game developed by HAL Laboratory and published by Nintendo for the GameCube. It is the second installment in the Super Smash Bros. series. It features characters from Nintendo video game franchises such as Mario, The Legend of Zelda, Star Fox, and Pokémon. The stages and gameplay modes reference or take designs from these franchises as well. Like its predecessor, Super Smash Bros. Melee differs from traditional fighting games as the objective is to force their opponents beyond the boundaries of the stage. Most attacks inflict damage and can, if enough damage is dealt, knock back the enemy. Each character's health is measured by a meter that represents damage as a percentage. The higher the percentage value, the farther the player gets knocked back, and the easier they are to knock off the stage, which will result in the character's death and the loss of a stock, or life. Unlike other games of the same genre, in which moves are entered by button-input combinations, most moves in Super Smash Bros. Melee can be accessed via one-button presses and a joystick direction.",
+    "username": "User"
 }
 ]);

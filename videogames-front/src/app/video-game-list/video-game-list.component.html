@@ -115,7 +115,7 @@
       <mat-paginator [length]="filteredGames.length"
                      [pageSize]="pageSize"
                      [pageIndex]="currentPage"
-                     [pageSizeOptions]="[1, 5, 10, 25, 100]"
+                     [pageSizeOptions]="[5, 10, 25, 100]"
                      (page)="_pageEvent = switchDisplayedGamed($event)"
                      style="background-color: #eff5ff;">
       </mat-paginator>
